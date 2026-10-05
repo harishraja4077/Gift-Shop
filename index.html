@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stackly â€” Gift Atelier | Curated Gifting, Wrapped in Art</title>
+<meta name="description" content="Stackly Gift Atelier curates hand-finished gifts, botanical arrangements and luxury hampers â€” wrapped by hand and delivered worldwide.">
+<meta name="theme-color" content="#16110E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%23C0995B'/><text x='50' y='68' font-size='58' font-family='Georgia' fill='%23fff' text-anchor='middle'>A</text></svg>">
+</head>
+<body>
+
+<!-- ============ ICON SPRITE ============ -->
+<svg style="display:none" aria-hidden="true">
+<symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.7-7.6 1.1-1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8S9.5 3 7.5 4.2 10 8 12 8zM12 8s2.5-5 4.5-3.8S14 8 12 8z"/></symbol>
+<symbol id="i-scissor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></symbol>
+<symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8a10 10 0 0 1-10 10z"/><path d="M2 21c0-3 1.9-5.5 5-6.5"/></symbol>
+<symbol id="i-cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1M3 8h14v7a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z"/><path d="M6 2v2M10 2v2M14 2v2"/></symbol>
+<symbol id="i-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/><path d="M19 3v3M20.5 4.5h-3"/></symbol>
+<symbol id="i-zoom" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/></symbol>
+<symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-fb" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V7c0-1 .3-1.5 1.6-1.5H17V2.6C16.6 2.5 15.4 2.4 14 2.4c-2.8 0-4.6 1.7-4.6 4.8V9H6v3.6h3.4V22H14v-9.4h3.4L17 9z"/></symbol>
+<symbol id="i-xt" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h3.2l-7 8 7.6 10h-5.6l-4.4-6-5 6H2.6l7.3-8.4L2.5 3h5.7l4 5.6zM16.4 19.1h1.6L7.7 4.8H5.9z"/></symbol>
+<symbol id="i-pin-s" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5.1s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.6 2.2-.9 3.4-.2 1 .5 1.8 1.5 1.8 1.8 0 3.1-2.3 3.1-5 0-2.1-1.4-3.6-3.9-3.6a4.3 4.3 0 0 0-4.5 4.3c0 .9.3 1.4.7 1.9.2.2.2.3.1.6l-.2.8c-.1.3-.3.4-.5.2-1.2-.5-1.8-1.9-1.8-3.5 0-2.6 2.2-5.7 6.5-5.7 3.5 0 5.8 2.5 5.8 5.3 0 3.6-2 6.3-4.9 6.3-1 0-1.9-.5-2.2-1.1l-.6 2.4c-.2.8-.6 1.7-1 2.4A10 10 0 1 0 12 2z"/></symbol>
+<symbol id="i-yt" viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 7.2a2.8 2.8 0 0 0-2-2C18.7 4.7 12 4.7 12 4.7s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 12a29 29 0 0 0 .5 4.8 2.8 2.8 0 0 0 2 2c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 23 12a29 29 0 0 0-.5-4.8zM9.8 15.3V8.7l5.7 3.3z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5.5v6c0 5 3.4 9.3 8 10.5 4.6-1.2 8-5.5 8-10.5v-6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></symbol>
+</svg>
+
+<!-- ============ PRELOADER ============ -->
+<div id="preloader" role="status" aria-label="Loading">
+  <div class="pl-curtain"></div>
+  <div class="pl-inner">
+    <div class="pl-mark">STACKLY</div>
+    <div class="pl-bar"><i class="pl-fill"></i></div>
+    <div class="pl-num"><span>Gift Atelier</span><span class="pl-num-val">00</span></div>
+  </div>
+</div>
+
+<div id="progress"></div>
+<div id="pt"><span>STACKLY</span></div>
+<div class="cur"></div><div class="cur-dot"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="shell nav-in">
+    <a href="index.html" class="logo" aria-label="Gift Atelier home">
+      <img class="logo-img" src="Assets/logo.webp" alt="Gift Atelier" width="217" height="73">
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="signin.html" class="btn btn--sm magnet">Sign In</a>
+      <button class="cart-btn" aria-label="Open bag">
+        <svg><use href="#i-bag"/></svg><span class="count" style="display:none">0</span>
+      </button>
+      <button class="burger" aria-label="Open menu" aria-expanded="false"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ DRAWER ============ -->
+<div class="drawer" id="drawer">
+  <div class="drawer-veil"></div>
+  <aside class="drawer-panel">
+    <div class="drawer-top">
+      <span class="logo"><img class="logo-img" src="Assets/logo.webp" alt="Gift Atelier" width="217" height="73"></span>
+      <button class="drawer-close" aria-label="Close menu"><svg width="17" height="17"><use href="#i-x"/></svg></button>
+    </div>
+    <nav aria-label="Mobile">
+      <a href="index.html"><span>01</span> Home</a>
+      <a href="services.html"><span>02</span> Services</a>
+      <a href="blog.html"><span>03</span> Blog</a>
+      <a href="about.html"><span>04</span> About</a>
+      <a href="contact.html"><span>05</span> Contact</a>
+      <a href="signin.html"><span>06</span> Sign in</a>
+    </nav>
+    <div class="drawer-foot">
+      <a href="404.html" class="btn btn--full">Shop the Collection</a>
+      <p class="mono" style="color:var(--txt-soft)">info@thestackly.com</p>
+    </div>
+  </aside>
+</div>
+
+<main>
+
+<!-- ============ 1 Â· HERO ============ -->
+<section class="hero grain" id="hero">
+  <span class="blob" style="width:420px;height:420px;background:radial-gradient(circle,rgba(192,153,91,.42),transparent 68%);top:-8%;left:-6%"></span>
+  <span class="blob" style="width:360px;height:360px;background:radial-gradient(circle,rgba(176,113,95,.3),transparent 68%);bottom:-10%;right:-4%"></span>
+
+  <div class="shell shell--wide hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow" data-hero-step>Est. 2009 Â· Salem</span>
+      <h1 class="d-hero lines" data-lines>Thoughtful gifts,<em>wrapped</em> like keepsakes.</h1>
+      <p class="lede" data-hero-step>A curation atelier for the people who matter. Every box is composed by hand, finished with ribbon and paper we print ourselves â€” then delivered in 48 hours, worldwide.</p>
+      <div class="hero-cta" data-hero-step>
+        <a href="404.html" class="btn magnet">Explore Collection</a>
+        <a href="404.html" class="btn btn--ghost magnet">How We Craft</a>
+      </div>
+      <div class="hero-stats" data-hero-step>
+        <div><b><span data-count="48">0</span>h</b><small>Global delivery</small></div>
+        <div><b><span data-count="320">0</span>+</b><small>Curated pieces</small></div>
+        <div><b><span data-count="96">0</span>%</b><small>Reusable packaging</small></div>
+      </div>
+    </div>
+
+    <div class="hero-media" data-hero-step>
+      <div class="hero-frame">
+        <img src="Assets/home-hero.webp" alt="Gold-wrapped gift boxes tied with satin ribbon" width="1180" height="787" fetchpriority="high" decoding="async">
+      </div>
+      <div class="hero-badge"><span>Hand<br>finished<br>since<br>2009</span></div>
+      <div class="hero-float">
+        <div class="hf-img"><img src="Assets/home-hero-2.webp" alt="A stack of colourful wrapped presents" width="1024" height="683" loading="lazy" decoding="async"></div>
+        <h4>Signature Hamper No. 04</h4>
+        <p>Six treasures Â· ribbon &amp; handwritten card</p>
+        <div class="hf-meta"><span class="tag">Â£148</span><span class="mono" style="color:var(--txt-soft)">In stock</span></div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#trust" class="hero-scroll" aria-label="Scroll down"><span>Scroll</span><i class="line"></i></a>
+</section>
+
+<!-- ============ 2 Â· TRUST ============ -->
+<section class="trust" id="trust">
+  <div class="shell trust-in">
+    <div class="trust-lead" data-rev="left">
+      <b>Trusted by <em style="font-style:italic">12,400</em> gifters in 41 countries</b>
+    </div>
+    <div class="mq" data-rev="right">
+      <div class="mq-track" aria-hidden="true">
+        <span><b>Hand-tied</b> with Japanese cotton ribbon</span>
+        <span>Carbon-neutral delivery</span>
+        <span><b>48-hour</b> dispatch</span>
+        <span>Made-to-order &amp; personalised</span>
+        <span><b>4.9/5</b> from 2,180 reviews</span>
+        <span>Plastic-free since 2016</span>
+        <span><b>Hand-tied</b> with Japanese cotton ribbon</span>
+        <span>Carbon-neutral delivery</span>
+        <span><b>48-hour</b> dispatch</span>
+        <span>Made-to-order &amp; personalised</span>
+        <span><b>4.9/5</b> from 2,180 reviews</span>
+        <span>Plastic-free since 2016</span>
+      </div>
+    </div>
+  </div>
+  <div class="shell" style="margin-top:clamp(2rem,4vw,3rem)">
+    <div class="stat-strip">
+      <div data-rev><b data-count="12" data-suffix="K+">0</b><small>Orders delivered</small></div>
+      <div data-rev="1"><b data-count="41">0</b><small>Countries served</small></div>
+      <div data-rev="2"><b data-count="4.9" data-suffix="/5">0</b><small>Average rating</small></div>
+      <div data-rev="3"><b data-count="0" data-suffix="%">0</b><small>Plastic in packaging</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 Â· CATEGORIES ============ -->
+<section class="sect sect--cream" id="categories">
+  <div class="shell">
+    <div class="sect-head sect-head--split">
+      <div>
+        <span class="eyebrow" data-rev>Six houses, one standard</span>
+        <h2 class="d-1" data-rev="1">Shop by <em>category</em></h2>
+      </div>
+      <p class="lede" data-rev="2">From living botanicals to small-batch confectionery â€” every collection is edited by our in-house stylists and restocked weekly, never warehoused in bulk.</p>
+    </div>
+
+    <div class="grid g-3">
+      <a href="404.html" class="cat-card" data-rev data-tilt="4">
+        <img src="Assets/home-cat-1.webp" alt="Seasonal bouquet in a ceramic vase" width="860" height="661" loading="lazy" decoding="async">
+        <span class="cc-num">01</span>
+        <span class="cc-in">
+          <span class="mono">01 Â· 64 pieces</span>
+          <h3>Flowers &amp; Botanicals</h3>
+          <p>Living stems, dried arrangements and pressed botanicals.</p>
+          <span class="cc-cta">Explore <i></i></span>
+        </span>
+      </a>
+      <a href="404.html" class="cat-card" data-rev data-tilt="4" style="margin-top:clamp(1rem,3vw,2.5rem)">
+        <img src="Assets/home-cat-2.webp" alt="Minimalist white ceramic vase" width="1024" height="958" loading="lazy" decoding="async">
+        <span class="cc-num">02</span>
+        <span class="cc-in">
+          <span class="mono">02 Â· 51 pieces</span>
+          <h3>Ceramics &amp; Home</h3>
+          <p>Wheel-thrown stoneware and small-batch glassware.</p>
+          <span class="cc-cta">Explore <i></i></span>
+        </span>
+      </a>
+      <a href="404.html" class="cat-card" data-rev data-tilt="4">
+        <img src="Assets/home-cat-3.webp" alt="Hand-finished chocolate truffles" width="1024" height="840" loading="lazy" decoding="async">
+        <span class="cc-num">03</span>
+        <span class="cc-in">
+          <span class="mono">03 Â· 48 pieces</span>
+          <h3>Gourmet Pantry</h3>
+          <p>Single-origin cacao, wild honey, spiced nuts.</p>
+          <span class="cc-cta">Explore <i></i></span>
+        </span>
+      </a>
+      <a href="404.html" class="cat-card" data-rev data-tilt="4">
+        <img src="Assets/home-cat-4.webp" alt="Perfume bottle styled with pale flowers" width="900" height="1349" loading="lazy" decoding="async">
+        <span class="cc-num">04</span>
+        <span class="cc-in">
+          <span class="mono">04 Â· 39 pieces</span>
+          <h3>Beauty &amp; Fragrance</h3>
+          <p>Botanical skincare, eau de parfum, pressed oils.</p>
+          <span class="cc-cta">Explore <i></i></span>
+        </span>
+      </a>
+      <a href="404.html" class="cat-card" data-rev data-tilt="4" style="margin-top:clamp(1rem,3vw,2.5rem)">
+        <img src="Assets/home-cat-5.webp" alt="Fine gold ring on a neutral ground" width="1024" height="683" loading="lazy" decoding="async">
+        <span class="cc-num">05</span>
+        <span class="cc-in">
+          <span class="mono">05 Â· 44 pieces</span>
+          <h3>Jewellery &amp; Paper</h3>
+          <p>Solid 9ct pieces, letterpress cards and journals.</p>
+          <span class="cc-cta">Explore <i></i></span>
+        </span>
+      </a>
+      <a href="404.html" class="cat-card" data-rev data-tilt="4">
+        <img src="Assets/home-cat-6.webp" alt="Assorted greeting cards on display" width="1024" height="679" loading="lazy" decoding="async">
+        <span class="cc-num">06</span>
+        <span class="cc-in">
+          <span class="mono">06 Â· 37 pieces</span>
+          <h3>Play &amp; Wonder</h3>
+          <p>Wooden toys, heirloom games for small people.</p>
+          <span class="cc-cta">Explore <i></i></span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 Â· PRODUCTS ============ -->
+<section class="sect sect--sand" id="products">
+  <div class="shell">
+    <div class="sect-head sect-head--split">
+      <div>
+        <span class="eyebrow" data-rev>Bestsellers</span>
+        <h2 class="d-1" data-rev="1">The signature <em>collection</em></h2>
+      </div>
+      <div class="flex center gap-s" data-rev="2">
+        <button class="chip is-on" data-filter-group="#prodGrid" data-filter="all">All</button>
+        <button class="chip" data-filter-group="#prodGrid" data-filter="home">Home</button>
+        <button class="chip" data-filter-group="#prodGrid" data-filter="pantry">Pantry</button>
+        <button class="chip" data-filter-group="#prodGrid" data-filter="wear">Wear</button>
+      </div>
+    </div>
+
+    <div class="grid g-3" id="prodGrid">
+      <article class="prod" data-rev data-cat="home" data-tilt="6">
+        <div class="prod-media">
+          <div class="prod-flags"><span class="flag flag--best">Bestseller</span></div>
+          <img src="Assets/home-prod-1.webp" alt="Soy wax scented candle" width="1024" height="683" loading="lazy" decoding="async">
+          <div class="prod-quick">
+            <button class="qbtn" data-qv="Assets/home-prod-1.webp" data-name="Ember &amp; Fig Soy Candle" data-price="Â£38" data-meta="Home Â· 220g Â· 45h burn">Quick view</button>
+            <button class="qbtn qbtn--icon" data-add="Ember &amp; Fig Candle" aria-label="Add to bag"><svg><use href="404.html"/></svg></button>
+          </div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-cat">Home Fragrance</span>
+          <h3>Ember &amp; Fig Soy Candle</h3>
+          <div class="prod-rate"><span class="stars"><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg></span>4.9 (312)</div>
+          <div class="prod-foot"><span class="price">Â£38</span><span class="mono" style="color:var(--txt-soft)">220g</span></div>
+        </div>
+      </article>
+
+      <article class="prod" data-rev data-rev="1" data-cat="home" data-tilt="6">
+        <div class="prod-media">
+          <div class="prod-flags"><span class="flag flag--new">New</span></div>
+          <img src="Assets/home-prod-2.webp" alt="Hand-poured scented candles" width="1024" height="683" loading="lazy" decoding="async">
+          <div class="prod-quick">
+            <button class="qbtn" data-qv="Assets/home-prod-2.webp" data-name="Trio of Scented Candles" data-price="Â£92" data-meta="Home Â· Set of 3 Â· 30h each">Quick view</button>
+            <button class="qbtn qbtn--icon" data-add="Scented Candle Trio" aria-label="Add to bag"><svg><use href="404.html"/></svg></button>
+          </div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-cat">Home Fragrance</span>
+          <h3>Trio of Scented Candles</h3>
+          <div class="prod-rate"><span class="stars"><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg></span>4.8 (204)</div>
+          <div class="prod-foot"><span class="price">Â£92</span><span class="mono" style="color:var(--txt-soft)">Set of 3</span></div>
+        </div>
+      </article>
+
+      <article class="prod" data-rev data-rev="2" data-cat="pantry" data-tilt="6">
+        <div class="prod-media">
+          <div class="prod-flags"><span class="flag flag--sale">âˆ’20%</span></div>
+          <img src="Assets/home-prod-3.webp" alt="Chocolate truffles with walnuts" width="900" height="1349" loading="lazy" decoding="async">
+          <div class="prod-quick">
+            <button class="qbtn" data-qv="Assets/home-prod-3.webp" data-name="Walnut Truffle Selection" data-price="Â£30" data-meta="Pantry Â· 16 pieces Â· 70% cacao">Quick view</button>
+            <button class="qbtn qbtn--icon" data-add="Walnut Truffles" aria-label="Add to bag"><svg><use href="404.html"/></svg></button>
+          </div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-cat">Gourmet Pantry</span>
+          <h3>Walnut Truffle Selection</h3>
+          <div class="prod-rate"><span class="stars"><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg></span>4.9 (521)</div>
+          <div class="prod-foot"><span class="price"><s>Â£38</s>Â£30</span><span class="mono" style="color:var(--txt-soft)">16 pcs</span></div>
+        </div>
+      </article>
+
+      <article class="prod" data-rev data-cat="home" data-tilt="6">
+        <div class="prod-media">
+          <img src="Assets/home-prod-4.webp" alt="Linen-bound open notebook" width="1024" height="627" loading="lazy" decoding="async">
+          <div class="prod-quick">
+            <button class="qbtn" data-qv="Assets/home-prod-4.webp" data-name="Linen Journal, A5" data-price="Â£26" data-meta="Paper Â· 192 pages Â· thread bound">Quick view</button>
+            <button class="qbtn qbtn--icon" data-add="Linen Journal" aria-label="Add to bag"><svg><use href="404.html"/></svg></button>
+          </div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-cat">Paper &amp; Desk</span>
+          <h3>Linen Journal, A5</h3>
+          <div class="prod-rate"><span class="stars"><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg></span>4.7 (188)</div>
+          <div class="prod-foot"><span class="price">Â£26</span><span class="mono" style="color:var(--txt-soft)">192pp</span></div>
+        </div>
+      </article>
+
+      <article class="prod" data-rev data-rev="1" data-cat="wear" data-tilt="6">
+        <div class="prod-media">
+          <div class="prod-flags"><span class="flag flag--best">Bestseller</span></div>
+          <img src="Assets/home-prod-5.webp" alt="Fine pearl necklace" width="1024" height="768" loading="lazy" decoding="async">
+          <div class="prod-quick">
+            <button class="qbtn" data-qv="Assets/home-prod-5.webp" data-name="Freshwater Pearl Strand" data-price="Â£145" data-meta="Wear Â· 9ct clasp Â· 42cm">Quick view</button>
+            <button class="qbtn qbtn--icon" data-add="Pearl Strand" aria-label="Add to bag"><svg><use href="404.html"/></svg></button>
+          </div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-cat">Jewellery</span>
+          <h3>Freshwater Pearl Strand</h3>
+          <div class="prod-rate"><span class="stars"><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg></span>4.9 (96)</div>
+          <div class="prod-foot"><span class="price">Â£145</span><span class="mono" style="color:var(--txt-soft)">9ct</span></div>
+        </div>
+      </article>
+
+      <article class="prod" data-rev data-rev="2" data-cat="home" data-tilt="6">
+        <div class="prod-media">
+          <img src="Assets/home-prod-6.webp" alt="Hand-painted terracotta plant pot" width="1024" height="727" loading="lazy" decoding="async">
+          <div class="prod-quick">
+            <button class="qbtn" data-qv="Assets/home-prod-6.webp" data-name="Painted Clay Pot, Large" data-price="Â£44" data-meta="Home Â· Terracotta Â· 24cm">Quick view</button>
+            <button class="qbtn qbtn--icon" data-add="Clay Plant Pot" aria-label="Add to bag"><svg><use href="404.html"/></svg></button>
+          </div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-cat">Ceramics</span>
+          <h3>Painted Clay Pot, Large</h3>
+          <div class="prod-rate"><span class="stars"><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg></span>4.6 (143)</div>
+          <div class="prod-foot"><span class="price">Â£44</span><span class="mono" style="color:var(--txt-soft)">24cm</span></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="flex center" style="justify-content:center;margin-top:clamp(2rem,4vw,3.2rem)" data-rev>
+      <a href="404.html" class="btn btn--ghost magnet">Browse All 320 Pieces</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 Â· STORY ============ -->
+<section class="sect sect--cream" id="story">
+  <div class="shell split" data-para-host>
+    <div class="split-media" data-rev="left">
+      <div class="sm-main">
+        <img src="Assets/home-story-1.webp" alt="Ceramicist working at a pottery studio" width="1050" height="700" loading="lazy" decoding="async">
+      </div>
+      <div class="sm-sub" data-para="0.10">
+        <img src="Assets/home-story-2.webp" alt="Hands shaping clay on a potter's wheel" width="1024" height="731" loading="lazy" decoding="async">
+      </div>
+      <div class="sm-ring"><span>MADE BY HAND</span></div>
+      <div class="sm-badge"><div><b>16</b><small>Years</small></div></div>
+    </div>
+
+    <div class="split-copy">
+      <span class="eyebrow" data-rev>Our story</span>
+      <h2 class="d-1" data-rev="1">A gift is <em>an object with a memory</em> inside.</h2>
+      <p class="lede" data-rev="2">Stackly began in a back room in Chinna Thirupathi with one ribbon spool and a stubborn belief: nothing you give should be forgettable. Sixteen years later we still tie every parcel by hand â€” and we still know the name of the person who chose it.</p>
+      <ul class="checklist" data-rev="3">
+        <li><span class="ck"><svg><use href="404.html"/></svg></span><span><b>Small-batch makers only</b>We visit every workshop; 8 of 61 applicants are approved each season.</span></li>
+        <li><span class="ck"><svg><use href="404.html"/></svg></span><span><b>Packaging you keep</b>Boxes become jewellery trays, ribbon returns to the spool, tissue is compostable.</span></li>
+        <li><span class="ck"><svg><use href="404.html"/></svg></span><span><b>Written by a person</b>Every card is hand-lettered by our studio, never machine-printed.</span></li>
+      </ul>
+      <div class="flex gap-s wrap" data-rev="4">
+        <a href="404.html" class="btn magnet">Read Our Story</a>
+        <a href="404.html" class="btn btn--ghost magnet">Custom Gifting</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 Â· PARALLAX BAND ============ -->
+<section class="band grain" id="band">
+  <div class="band-img" data-para-host>
+    <img data-para="0.22" src="Assets/home-band.webp" alt="" width="1200" height="798" loading="lazy" decoding="async" aria-hidden="true">
+  </div>
+  <div class="shell band-in">
+    <span class="eyebrow" data-rev>The Stackly promise</span>
+    <h2 class="d-1 lines" data-lines data-rev="1">If it isnâ€™t beautiful enough to keep, we donâ€™t send it.</h2>
+    <p data-rev="2">Four sets of eyes review every order before it leaves the studio. Four. That is the unglamorous secret behind twelve thousand deliveries.</p>
+    <div class="band-cta" data-rev="3">
+      <a href="404.html" class="btn btn--gold magnet">Explore Our Services</a>
+      <a href="404.html" class="btn btn--ghost magnet" style="--fg:#fff;border-color:rgba(255,255,255,.35)">Plan a Corporate Gift</a>
+    </div>
+    <div class="band-sig">
+      <div data-rev="1"><b><span data-count="4">0</span>Ã—</b><small>Quality review</small></div>
+      <div data-rev="2"><b><span data-count="12">0</span>K+</b><small>Parcels delivered</small></div>
+      <div data-rev="3"><b><span data-count="0">0</span>%</b><small>Plastic in packaging</small></div>
+      <div data-rev="4"><b><span data-count="41">0</span></b><small>Countries served</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 Â· CRAFT / PROCESS ============ -->
+<section class="sect sect--dark grain" id="craft">
+  <div class="shell">
+    <div class="sect-head sect-head--mid">
+      <span class="eyebrow eyebrow--c" data-rev>How we work</span>
+      <h2 class="d-1" data-rev="1">From sketch to <em>sealed ribbon</em></h2>
+      <p class="lede" data-rev="2" style="margin-inline:auto">Three stages, eleven people, zero shortcuts. Here is exactly what happens after you choose a gift.</p>
+    </div>
+
+    <div class="steps steps--3">
+      <article class="step" data-rev>
+        <div class="step-media">
+          <img src="Assets/home-step-1.webp" alt="Stall of handmade ceramics at a local market" width="1024" height="576" loading="lazy" decoding="async">
+        </div>
+        <span class="step-line"></span>
+        <h3>01 Â· We choose the makers</h3>
+        <p>Every eight weeks the studio reviews new workshops, samples the work, and selects only the makers whose hands we would trust with our own gifts.</p>
+      </article>
+      <article class="step" data-rev data-rev="1">
+        <div class="step-media">
+          <img src="Assets/home-step-2.webp" alt="Hands wrapping a present with ribbon" width="635" height="864" loading="lazy" decoding="async">
+        </div>
+        <span class="step-line"></span>
+        <h3>02 Â· We compose &amp; tie</h3>
+        <p>Your selections are laid out, colour-balanced, cushioned in recycled wool and finished with a hand-tied bow â€” signed by the person who made it.</p>
+      </article>
+      <article class="step" data-rev data-rev="2">
+        <div class="step-media">
+          <img src="Assets/home-step-3.webp" alt="Letterpress greeting cards on a shop display" width="1024" height="678" loading="lazy" decoding="async">
+        </div>
+        <span class="step-line"></span>
+        <h3>03 Â· We write &amp; release</h3>
+        <p>A letterpress card is hand-lettered, the box is wax-sealed, and a carbon-neutral courier collects it within 48 hours.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 Â· GALLERY ============ -->
+<section class="sect sect--cream" id="gallery">
+  <div class="shell">
+    <div class="sect-head sect-head--split">
+      <div>
+        <span class="eyebrow" data-rev>Lookbook</span>
+        <h2 class="d-1" data-rev="1">Wrapped by us, <em>recently</em></h2>
+      </div>
+      <p class="lede" data-rev="2">A rolling look at what left the studio this season. Tap any frame to view it larger.</p>
+    </div>
+
+    <div class="masonry" data-rev>
+      <figure class="mitem" data-lb="Assets/home-gal-1.webp" data-lb-title="Dried bouquet Â· botanical series">
+        <img src="Assets/home-gal-1.webp" alt="Dried flower bouquet in warm light" width="1024" height="683" loading="lazy" decoding="async">
+        <span class="mi-zoom"><svg><use href="404.html"/></svg></span>
+        <figcaption class="mi-in"><small>Botanicals</small><h4>Dried bouquet, series 04</h4></figcaption>
+      </figure>
+      <figure class="mitem" data-lb="Assets/home-gal-2.webp" data-lb-title="Atelier visit Â· Kelmarsh">
+        <img src="Assets/home-gal-2.webp" alt="Inside a flower shop lined with blooms" width="1024" height="683" loading="lazy" decoding="async">
+        <span class="mi-zoom"><svg><use href="404.html"/></svg></span>
+        <figcaption class="mi-in"><small>Atelier visit</small><h4>Kelmarsh, Thursday</h4></figcaption>
+      </figure>
+      <figure class="mitem" data-lb="Assets/home-gal-3.webp" data-lb-title="Tea ceremony hamper">
+        <img src="Assets/home-gal-3.webp" alt="Traditional tea ceremony arrangement" width="1024" height="683" loading="lazy" decoding="async">
+        <span class="mi-zoom"><svg><use href="404.html"/></svg></span>
+        <figcaption class="mi-in"><small>Pantry</small><h4>Tea ceremony hamper</h4></figcaption>
+      </figure>
+      <figure class="mitem" data-lb="Assets/home-gal-4.webp" data-lb-title="Roastery collaboration">
+        <img src="Assets/home-gal-4.webp" alt="Freshly roasted coffee beans" width="1024" height="683" loading="lazy" decoding="async">
+        <span class="mi-zoom"><svg><use href="404.html"/></svg></span>
+        <figcaption class="mi-in"><small>Pantry</small><h4>Roastery collaboration</h4></figcaption>
+      </figure>
+      <figure class="mitem" data-lb="Assets/home-gal-5.webp" data-lb-title="Birthday parcel">
+        <img src="Assets/home-gal-5.webp" alt="Decorated birthday cake with candles" width="1024" height="683" loading="lazy" decoding="async">
+        <span class="mi-zoom"><svg><use href="404.html"/></svg></span>
+        <figcaption class="mi-in"><small>Celebrations</small><h4>Birthday parcel, no. 9</h4></figcaption>
+      </figure>
+      <figure class="mitem" data-lb="Assets/home-gal-6.webp" data-lb-title="Party hamper">
+        <img src="Assets/home-gal-6.webp" alt="Colourful balloons for a party" width="1024" height="1024" loading="lazy" decoding="async">
+        <span class="mi-zoom"><svg><use href="404.html"/></svg></span>
+        <figcaption class="mi-in"><small>Celebrations</small><h4>Party hamper</h4></figcaption>
+      </figure>
+    </div>
+
+    <div class="flex center" style="justify-content:center;margin-top:clamp(2rem,4vw,3rem)" data-rev>
+      <a href="404.html" class="btn btn--ghost magnet">More from the Journal</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9 Â· TESTIMONIALS ============ -->
+<section class="sect sect--dark grain" id="voices">
+  <div class="shell">
+    <div class="sect-head sect-head--split">
+      <div>
+        <span class="eyebrow" data-rev>Kind words</span>
+        <h2 class="d-1" data-rev="1">2,180 reviews. <em>4.9</em> average.</h2>
+      </div>
+      <div class="car-nav" data-rev="2" data-car>
+        <button class="arrow" data-car-prev aria-label="Previous"><svg><use href="404.html"/></svg></button>
+        <button class="arrow" data-car-next aria-label="Next" style="transform:rotate(180deg)"><svg><use href="404.html "/></svg></button>
+      </div>
+    </div>
+
+    <div class="tst-track" data-car-track data-rev="3">
+      <article class="tst">
+        <span class="quote-mark">â€œ</span>
+        <p>My mother kept the box. She genuinely kept it â€” it now holds her pearls and letters. Nobody has ever given me a present that made her keep the packaging.</p>
+        <div class="tst-foot">
+          <span class="avatar">EH</span>
+          <span><b>Elena Harcourt</b><small>Signature Hamper Â· Salem</small></span>
+        </div>
+      </article>
+      <article class="tst">
+        <span class="quote-mark">â€œ</span>
+        <p>We sent 340 client gifts in a single afternoon. Every one arrived on time, none of them arrived damaged, and three clients wrote to ask who we used.</p>
+        <div class="tst-foot">
+          <span class="avatar avatar--rose">DM</span>
+          <span><b>Daniel Moreau</b><small>Partner, Vellum &amp; Co.</small></span>
+        </div>
+      </article>
+      <article class="tst">
+        <span class="quote-mark">â€œ</span>
+        <p>I ordered a candle for my wifeâ€™s birthday and ended up rewriting my entire card twice because the letterpress paper is so beautiful I didnâ€™t want to waste it.</p>
+        <div class="tst-foot">
+          <span class="avatar avatar--sage">AO</span>
+          <span><b>Amara Osei</b><small>Home Fragrance Â· Accra</small></span>
+        </div>
+      </article>
+      <article class="tst">
+        <span class="quote-mark">â€œ</span>
+        <p>The 48-hour dispatch promise is real. Ordered Tuesday night from Singapore, my mother had it on her doorstep Friday afternoon with the ribbon still perfect.</p>
+        <div class="tst-foot">
+          <span class="avatar avatar--ink">JL</span>
+          <span><b>Jonas Lindqvist</b><small>Signature Hamper Â· Singapore</small></span>
+        </div>
+      </article>
+      <article class="tst">
+        <span class="quote-mark">â€œ</span>
+        <p>As a florist I am very hard to impress. This is the third box I have ordered and I still open it slowly to see what they did with the foliage.</p>
+        <div class="tst-foot">
+          <span class="avatar avatar--rose">PC</span>
+          <span><b>Priya Chandran</b><small>Botanicals Â· Singapore</small></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 Â· JOURNAL ============ -->
+<section class="sect sect--cream" id="journal">
+  <div class="shell">
+    <div class="sect-head sect-head--split">
+      <div>
+        <span class="eyebrow" data-rev>The Journal</span>
+        <h2 class="d-1" data-rev="1">Notes on <em>gifting well</em></h2>
+      </div>
+      <a href="404.html" class="tlink" data-rev="2">Read all articles</a>
+    </div>
+
+    <div class="grid g-3">
+      <article class="post" data-rev>
+        <div class="post-media">
+          <span class="pm-tag tag">Guide</span>
+          <img src="Assets/home-journal-1.webp" alt="Notebook and pen on a wooden table" width="1024" height="678" loading="lazy" decoding="async">
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>12 Feb</span><i></i><span>6 min</span></div>
+          <h3>How to choose a gift theyâ€™ll actually keep</h3>
+          <p>The five questions we ask ourselves before we allow anything into a hamper â€” and the two answers that are always wrong.</p>
+          <a href="404.html" class="post-read">Read <i></i></a>
+        </div>
+      </article>
+
+      <article class="post" data-rev data-rev="1">
+        <div class="post-media">
+          <span class="pm-tag tag">Craft</span>
+          <img src="Assets/home-journal-2.webp" alt="Open notebook with handwritten notes" width="1024" height="683" loading="lazy" decoding="async">
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>28 Jan</span><i></i><span>4 min</span></div>
+          <h3>The art of the hand-tied bow, in nine seconds</h3>
+          <p>Our head of studio breaks down the single knot that holds it all together â€” and why cheap ribbon always looks it.</p>
+          <a href="404.html" class="post-read">Read <i></i></a>
+        </div>
+      </article>
+
+      <article class="post" data-rev data-rev="2">
+        <div class="post-media">
+          <span class="pm-tag tag">Makers</span>
+          <img src="Assets/home-journal-3.webp" alt="Colourful yarn skeins" width="1300" height="867" loading="lazy" decoding="async">
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>09 Jan</span><i></i><span>8 min</span></div>
+          <h3>Inside the workshop with our wool dyer</h3>
+          <p>Nine hours, four vats, and one stubborn shade of terracotta that took two full seasons to get right.</p>
+          <a href="404.html" class="post-read">Read <i></i></a>
+        </div>
+      </article>
+    </div>
+
+    <div style="margin-top:clamp(2.4rem,5vw,4rem)" data-rev>
+      <div class="newsletter">
+        <div class="nl-img"><img src="Assets/home-cta.webp" alt="" width="846" height="562" loading="lazy" decoding="async" aria-hidden="true"></div>
+        <span class="eyebrow eyebrow--c eyebrow--plain">Join the list</span>
+        <h2 class="d-2">Get first access to seasonal edits</h2>
+        <p style="color:rgba(251,247,241,.78);max-width:50ch;margin:1rem auto 0">One letter a month: new makers, wrapping secrets, and early access to limited hampers. No noise, unsubscribe in a click.</p>
+        <form class="nl-form" data-nl novalidate>
+          <input type="email" inputmode="email" pattern="[^@\s]+@gmail\.com" placeholder="you@gmail.com" aria-label="Email address" required>
+          <button class="btn btn--gold magnet" type="submit">Subscribe</button>
+        </form>
+        <small class="nl-err" role="alert"></small>
+        <p class="nl-note">Joined by 12,400 readers Â· GDPR-safe</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ CTA STRIP ============ -->
+<div class="cta grain">
+  <div class="shell cta-in">
+    <span class="eyebrow eyebrow--c" data-rev>Ready when you are</span>
+    <h2 class="d-1" data-rev="1">Let us wrap something <em>worth keeping</em></h2>
+    <p data-rev="2">Tell us the occasion and the person. We will come back within one working day with a composition and a photograph.</p>
+    <div class="cta-btns" data-rev="3">
+      <a href="404.html" class="btn btn--gold magnet">Start an Enquiry</a>
+      <a href="404.html" class="btn btn--ghost magnet" style="--fg:#fff;border-color:rgba(255,255,255,.35)">See Services</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot-marquee">
+    <div class="mq"><div class="mq-track" aria-hidden="true">
+      <span><b>Wrap it</b> with meaning</span><span>Tie it with patience</span><span><b>Send it</b> with care</span>
+      <span>Wrap it with meaning</span><span>Tie it with patience</span><span><b>Send it</b> with care</span>
+    </div></div>
+  </div>
+
+  <div class="shell foot-top">
+    <div>
+      <a href="index.html" class="logo"><img class="logo-img" src="Assets/logo1.webp" alt="Gift Atelier" width="217" height="73"></a>
+      <p style="margin-top:1.3rem;max-width:34ch;font-size:.9rem">A gift curation atelier in Salem. Small-batch makers, hand-tied parcels, delivered worldwide since 2009.</p>
+      <div class="socials" style="margin-top:1.5rem">
+        <a href="404.html" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+        <a href="404.html" aria-label="Pinterest"><svg><use href="#i-pin-s"/></svg></a>
+        <a href="404.html" aria-label="X"><svg><use href="#i-xt"/></svg></a>
+        <a href="404.html" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+        <a href="404.html" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h5>Explore</h5>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">services</a>
+        <a href="blog.html">blog</a>
+        <a href="about.html">about</a>
+        <a href="contact.html">contact</a>
+      </nav>
+    </div>
+    <div>
+      <h5>Collections</h5>
+      <nav>
+        <a href="404.html">Flowers &amp; Botanicals</a>
+        <a href="404.html">Ceramics &amp; Home</a>
+        <a href="404.html">Gourmet Pantry</a>
+        <a href="404.html">Beauty &amp; Fragrance</a>
+        <a href="404.html">Jewellery &amp; Paper</a>
+      </nav>
+    </div>
+    <div class="foot-cta">
+      <h5>Visit the atelier</h5>
+      <p>MMR Complex, Chinna Thirupathi<br>near Chinna Muniyappan Kovil<br>Salem, Tamil Nadu 636008</p>
+      <p style="margin:0"><a href="404.html" style="color:var(--gold-2)" href="404.html">WhatsApp +91 70107 92745</a><br><a href="mailto:info@thestackly.com" href="404.html">info@thestackly.com</a><br><a href="mailto:thestackly@gmail.com" href="404.html">thestackly@gmail.com</a></p>
+      <div class="foot-badges">
+        <span><svg><use href="404.html"/></svg> Plastic-free</span>
+        <span><svg><use href="404.html"/></svg> 41 countries</span>
+        <span><svg><use href="404.html"/></svg> 48h dispatch</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell foot-bot">
+    <p>Â© <span data-year>2026</span> Stackly Gift Atelier Ltd. All rights reserved.</p>
+    <nav>
+      <a href="404.html" href="404.html">Privacy</a><a href="404.html" href="404.html">Terms</a><a href="404.html" href="404.html">Shipping</a><a href="404.html" href="404.html">Returns</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- ============ OVERLAYS ============ -->
+<button class="to-top" aria-label="Back to top"><svg style="transform:rotate(-90deg)"><use href="#i-arrow"/></svg></button>
+<div class="toast-wrap"></div>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-x" aria-label="Close"><svg width="17" height="17"><use href="404.html"/></svg></button>
+  <button class="lb-nav prev" aria-label="Previous"><svg style="transform:rotate(180deg)"><use href="404.html"/></svg></button>
+  <div style="text-align:center">
+    <img src="" alt="">
+    <p class="lb-cap"></p>
+  </div>
+  <button class="lb-nav next" aria-label="Next"><svg><use href="404.html"/></svg></button>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Product quick view">
+  <button class="modal-x" aria-label="Close"><svg width="17" height="17"><use href="404.html"/></svg></button>
+  <div class="modal-box">
+    <div class="mb-media"><img src="" alt=""></div>
+    <div class="mb-body">
+      <span class="tag" data-qv-meta>Home</span>
+      <h3 data-qv-title>Product</h3>
+      <p>Composed by our studio, cushioned in recycled wool and finished with a hand-tied bow. Includes a letterpress card, hand-written at the studio.</p>
+      <div class="stars" style="color:var(--gold);gap:2px"><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg><svg><use href="404.html"/></svg></div>
+      <div class="flex center between gap-m">
+        <span class="price" style="font-size:2rem" data-qv-price>Â£0</span>
+        <button class="btn magnet" data-qv-add>Add to bag</button>
+      </div>
+      <ul class="checklist" style="margin:0">
+        <li><span class="ck"><svg><use href="404.html"/></svg></span><span>Dispatched within 48 hours</span></li>
+        <li><span class="ck"><svg><use href="404.html"/></svg></span><span>Plastic-free, reusable packaging</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+<script>document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
+</body>
+</html>

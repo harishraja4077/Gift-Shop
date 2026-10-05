@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orders Ã¢â‚¬â€ Stackly Admin Ã¢â‚¬â€ Stackly Gift Atelier</title>
+<meta name="description" content="Every order in the studio: fulfilment queue, payment exceptions, packing and dispatch.">
+<meta name="theme-color" content="#16110E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%23C0995B'/><text x='50' y='68' font-size='58' font-family='Georgia' fill='%23fff' text-anchor='middle'>A</text></svg>">
+</head>
+<body class="app-body">
+
+<!-- ============ ICON SPRITE ============ -->
+<svg style="display:none" aria-hidden="true">
+<symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.7-7.6 1.1-1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8S9.5 3 7.5 4.2 10 8 12 8zM12 8s2.5-5 4.5-3.8S14 8 12 8z"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></symbol>
+<symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8a10 10 0 0 1-10 10z"/><path d="M2 21c0-3 1.9-5.5 5-6.5"/></symbol>
+<symbol id="i-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/><path d="M19 3v3M20.5 4.5h-3"/></symbol>
+<symbol id="i-zoom" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5.5v6c0 5 3.4 9.3 8 10.5 4.6-1.2 8-5.5 8-10.5v-6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M4.6 20.4a7.8 7.8 0 0 1 14.8 0"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.4" width="16" height="10.6" rx="2.5"/><path d="M8 10.4V7.6a4 4 0 0 1 8 0v2.8"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.8" cy="12" r="4.2"/><path d="M12 12h9.2M18.2 12v3.4M15.2 12v2.3"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.9 18a2 2 0 0 0 1.7 3h16.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4.2M12 17.2h.01"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"/><path d="M2.6 20.2a6.8 6.8 0 0 1 12.8 0"/><path d="M16.5 5.2a3.4 3.4 0 0 1 0 6.4M17.6 14.4a6.8 6.8 0 0 1 3.8 5.8"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16.5A1.5 1.5 0 0 0 4.5 21H21"/><path d="M7.5 17v-5M12 17V7M16.5 17v-8"/></symbol>
+<symbol id="i-cog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="7.2"/><circle cx="12" cy="12" r="2.6"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4 7 7M17 17l1.6 1.6M18.6 5.4 17 7M7 17l-1.6 1.6"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 20a2 2 0 0 1-3.4 0"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 1.8v2.4M12 19.8v2.4M4.6 4.6 6.3 6.3M17.7 17.7l1.7 1.7M1.8 12h2.4M19.8 12h2.4M4.6 19.4 6.3 17.7M17.7 6.3l1.7-1.7"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4.5A1.5 1.5 0 0 0 3 5.5v14A1.5 1.5 0 0 0 4.5 21h14a1.5 1.5 0 0 0 1.5-1.5V13"/><path d="M18.4 2.6a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4z"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6h17M8.5 6V4.2A1.2 1.2 0 0 1 9.7 3h4.6a1.2 1.2 0 0 1 1.2 1.2V6M18.5 6l-.8 14.1a1.5 1.5 0 0 1-1.5 1.4H7.8a1.5 1.5 0 0 1-1.5-1.4L5.5 6"/><path d="M10 11v6M14 11v6"/></symbol>
+<symbol id="i-dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3.5"/><path d="M7.5 10.5 12 15l4.5-4.5M12 15V3"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 0 1 14.4-6.1L21 8.5"/><path d="M21 4v4.5h-4.5"/><path d="M20.5 12a8.5 8.5 0 0 1-14.4 6.1L3 15.5"/><path d="M3 20v-4.5h4.5"/></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 2.8 12V4.8A2 2 0 0 1 4.8 2.8H12a2 2 0 0 1 1.4.6l7.2 7.2a2 2 0 0 1 0 2.8z"/><circle cx="7.6" cy="7.6" r="1.3"/></symbol>
+<symbol id="i-who" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><circle cx="8.5" cy="10.6" r="2.4"/><path d="M4.8 17.2a4 4 0 0 1 7.4 0M14.5 9.5h5M14.5 13h5"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20M6 15h4"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20z"/><path d="M9.2 21.5v-8h5.6v8"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></symbol>
+<symbol id="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4.5"/><path d="M15.5 16.5 20 12l-4.5-4.5M20 12H9"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z"/><path d="M14 2.5V8h5.5M8.5 13h7M8.5 17h5"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="m8.2 14.2-1.7 7 5.5-2.9 5.5 2.9-1.7-7"/></symbol>
+<symbol id="i-layer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.8 9.5 5-9.5 5-9.5-5z"/><path d="m2.5 16.2 9.5 5 9.5-5M2.5 11.7l9.5 5 9.5-5"/></symbol>
+<symbol id="i-percent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M19 5 5 19"/><circle cx="7.5" cy="7.5" r="2.8"/><circle cx="16.5" cy="16.5" r="2.8"/></symbol>
+<symbol id="i-inbox" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.5h-5l-1.5 3h-5l-1.5-3H3"/><path d="M6.2 4.5h11.6a2 2 0 0 1 1.8 1.1l3.4 6.9a2 2 0 0 1 .2.9v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-5a2 2 0 0 1 .2-.9l3.4-6.9a2 2 0 0 1 1.8-1.1z"/></symbol>
+<symbol id="i-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 7.5H5.2A2.2 2.2 0 0 1 6.6 3.2h11a2 2 0 0 1 2 2v2.3"/><rect x="3" y="7.5" width="18" height="12" rx="2.5"/><circle cx="16.5" cy="13.5" r="1.3"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5 4 13.8h6.5L9 21.5 20 10.2h-7z"/></symbol>
+</svg>
+
+<!-- ============ APP SHELL ============ -->
+<div class="side-veil"></div>
+<div class="app">
+
+  <aside class="side" aria-label="Studio console">
+    <div class="side-top">
+      <a href="admin.html" class="logo" aria-label="Studio console home">
+        <img class="logo-img" src="Assets/logo1.webp" alt="Gift Atelier" width="217" height="73">
+      </a>
+    </div>
+
+    <nav class="side-nav" aria-label="Studio console pages">
+      <p class="side-sec">Overview</p>
+      <a href="admin.html"><svg aria-hidden="true"><use href="#i-home"/></svg> Studio overview </a>
+      <p class="side-sec">Operations</p>
+      <a href="admin-orders.html" class="is-on" aria-current="page"><svg aria-hidden="true"><use href="#i-inbox"/></svg> Orders <span class="pill">7</span></a>
+      <a href="admin-products.html"><svg aria-hidden="true"><use href="#i-box"/></svg> Catalogue <span class="pill pill--gold">3</span></a>
+      <a href="admin-customers.html"><svg aria-hidden="true"><use href="#i-users"/></svg> Customers </a>
+      <p class="side-sec">Insight</p>
+      <a href="admin-analytics.html"><svg aria-hidden="true"><use href="#i-chart"/></svg> Analytics </a>
+      <p class="side-sec">Configuration</p>
+      <a href="admin-settings.html"><svg aria-hidden="true"><use href="#i-cog"/></svg> Settings </a>
+      <p class="side-sec">Elsewhere</p>
+      <a href="index.html"><svg aria-hidden="true"><use href="#i-sparkle"/></svg> Storefront </a>
+    </nav>
+
+    <div class="side-foot">
+      <div class="side-user">
+        <span class="avatar avatar--rose" data-user-avatar>LF</span>
+        <div>
+          <b data-user-name>Lucia Ferrini</b>
+          <small class="side-mail side-mail--ltr" data-user-email>lucia.ferrini@gmail.com</small>
+          <small>Studio manager Ã‚Â· Salem</small>
+        </div>
+      </div>
+      <a class="btn btn--ghost btn--sm btn--full" href="signin.html" data-signout><svg aria-hidden="true"><use href="#i-out"/></svg> Sign out</a>    </div>
+  </aside>
+
+  <div class="app-main">
+    <header class="app-top">
+      <button class="icon-btn side-toggle" aria-expanded="false" aria-label="Open navigation"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+
+      <div>
+        <p class="app-crumb">Studio <i></i> <span>Orders</span></p>
+        <h1>Orders</h1>
+      </div>
+
+      <div class="app-tools">
+        <label class="app-search">
+          <svg aria-hidden="true"><use href="#i-zoom"/></svg>
+          <input type="search" placeholder="Search orders, customersÃ¢â‚¬Â¦" aria-label="Search">
+          <kbd>/</kbd>
+        </label>
+        <button class="icon-btn" data-bell aria-label="Notifications"><svg aria-hidden="true"><use href="#i-bell"/></svg><span class="dot"></span></button>
+        <button class="icon-btn" data-theme aria-pressed="false" aria-label="Switch to the ink theme"><svg aria-hidden="true"><use href="#i-moon"/></svg></button>
+        <a href="signin.html" class="icon-btn" aria-label="Sign out" data-signout><svg aria-hidden="true"><use href="#i-out"/></svg></a>
+      </div>
+    </header>
+
+    <div class="app-body-pad">
+
+<!-- KPIs -->
+      <section class="kpi-grid" aria-label="Order figures">
+        <article class="kpi" id="rangeKpi">
+          <div class="kpi-top"><span class="kpi-ic kpi-ic--gold"><svg aria-hidden="true"><use href="#i-wallet"/></svg></span><span class="kpi-label">Order value</span></div>
+          <p class="kpi-val" data-seg-val>$48,240</p>
+          <div class="kpi-foot"><span class="trend trend--up"><svg aria-hidden="true"><use href="#i-up-right"/></svg>18.4%</span> against last year</div>
+        </article>
+
+        <article class="kpi">
+          <div class="kpi-top"><span class="kpi-ic kpi-ic--rose"><svg aria-hidden="true"><use href="#i-inbox"/></svg></span><span class="kpi-label">Orders placed</span></div>
+          <p class="kpi-val" data-count="612">612</p>
+          <div class="kpi-foot">Seven waiting to pack today</div>
+        </article>
+
+        <article class="kpi">
+          <div class="kpi-top"><span class="kpi-ic kpi-ic--ink"><svg aria-hidden="true"><use href="#i-clock"/></svg></span><span class="kpi-label">Average lead time</span></div>
+          <p class="kpi-val"><span data-count="1.4" data-dec="1">1.4</span><small> days</small></p>
+          <div class="kpi-foot">From paid to leaving the bench</div>
+        </article>
+
+        <article class="kpi">
+          <div class="kpi-top"><span class="kpi-ic kpi-ic--rose"><svg aria-hidden="true"><use href="#i-alert"/></svg></span><span class="kpi-label">Needs attention</span></div>
+          <p class="kpi-val" data-count="19">19</p>
+          <div class="kpi-foot">Payment or stock exceptions</div>
+        </article>
+      </section>
+
+      <!-- ORDER QUEUE -->
+      <section class="panel" data-dt-scope>
+        <div class="panel-hd">
+          <div><h2>Order queue</h2><p>Every order, from checkout to doorstep.</p></div>
+          <div class="flex gap-s wrap push">
+            <div class="seg" data-seg="#rangeKpi" role="group" aria-label="Choose the reporting period">
+              <button class="is-on" type="button" data-val="$48,240" aria-selected="true">30 days</button>
+              <button type="button" data-val="$182,640" aria-selected="false">12 months</button>
+            </div>
+            <button class="btn btn--sm" data-modal-open="m-quick" data-quick="order-new"><svg aria-hidden="true"><use href="#i-plus"/></svg> Take an order</button>
+          </div>
+        </div>
+
+        <div class="panel-bd">
+          <div class="app-toolbar toolbar-strip">
+            <div class="seg" role="tablist" aria-label="Filter orders by status">
+              <button class="is-on" type="button" data-filter="all" role="tab" aria-selected="true">All</button>
+              <button type="button" data-filter="pend" role="tab" aria-selected="false">Needs packing</button>
+              <button type="button" data-filter="done" role="tab" aria-selected="false">Delivered</button>
+              <button type="button" data-filter="bad" role="tab" aria-selected="false">Exceptions</button>
+            </div>
+            <div class="app-filter push">
+              <svg aria-hidden="true"><use href="#i-zoom"/></svg>
+              <input type="search" data-dt-search placeholder="Search order, customer, SKUâ€¦" aria-label="Search orders">
+            </div>
+            <button class="btn btn--ghost btn--sm dt-clear" type="button" data-dt-clear disabled><svg aria-hidden="true"><use href="#i-x"/></svg> Clear</button>
+          </div>
+        </div>
+
+        <div class="dt-wrap" data-dt-wrap>
+          <table class="dt" data-dt data-dt-page="6">
+            <caption class="sr-only">All studio orders</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="sortable" data-sort="ref">Order <span class="caret"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></span></th>
+                <th scope="col" class="sortable" data-sort="date">Placed <span class="caret"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></span></th>
+                <th scope="col" class="sortable" data-sort="who">Customer <span class="caret"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></span></th>
+                <th scope="col">Items</th>
+                <th scope="col" class="sortable" data-sort="status">Status <span class="caret"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></span></th>
+                <th scope="col" class="sortable num" data-sort="total">Total <span class="caret"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></span></th>
+                <th scope="col" class="shrink"><span class="sr-only">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b class="t-strong">#AU-2312</b><small class="d-block t-mute">Gift note</small></td>
+                <td data-sort="20261102">2 Nov 2026</td>
+                <td>
+                  <span class="cell-user">
+                    <span class="avatar">MB</span>
+                    <span><b>Margot Besnard</b><small>Gold Â· Paris, FR</small></span>
+                  </span>
+                </td>
+                <td>Autumn Amber No. 04, silk ribbon</td>
+                <td data-sort="Preparing"><span class="st st--wait">Preparing</span></td>
+                <td class="num t-strong" data-sort="198">$198.00</td>
+                <td class="shrink"><div class="row-act">
+                  <button type="button" data-modal-open="m-quick" data-quick="order-admin" aria-label="Actions for order AU-2312"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">#AU-2311</b></td>
+                <td data-sort="20261028">28 Oct 2026</td>
+                <td>
+                  <span class="cell-user">
+                    <span class="avatar avatar--sage">TL</span>
+                    <span><b>Tobias Lang</b><small>Gold Â· ZÃ¼rich, CH</small></span>
+                  </span>
+                </td>
+                <td>Neroli candle, travel case</td>
+                <td data-sort="In transit"><span class="st st--wait">In transit</span></td>
+                <td class="num t-strong" data-sort="124">$124.00</td>
+                <td class="shrink"><div class="row-act">
+                  <button type="button" data-modal-open="m-quick" data-quick="order-admin" aria-label="Actions for order AU-2311"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">#AU-2310</b></td>
+                <td data-sort="20261024">24 Oct 2026</td>
+                <td>
+                  <span class="cell-user">
+                    <span class="avatar avatar--rose">AK</span>
+                    <span><b>Aiko Kaneko</b><small>Silver Â· Kyoto, JP</small></span>
+                  </span>
+                </td>
+                <td>Silk &amp; Paper Monthly No. 07</td>
+                <td data-sort="Payment failed"><span class="st st--bad">Payment failed</span></td>
+                <td class="num t-strong" data-sort="268">$268.00</td>
+                <td class="shrink"><div class="row-act">
+                  <button type="button" data-modal-open="m-quick" data-quick="order-admin" aria-label="Actions for order AU-2310"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">#AU-2309</b></td>
+                <td data-sort="20261019">19 Oct 2026</td>
+                <td>
+                  <span class="cell-user">
+                    <span class="avatar avatar--ink">RH</span>
+                    <span><b>Ruth Hartley</b><small>Bronze Â· Bristol, UK</small></span>
+                  </span>
+                </td>
+                <td>Bone china teacup, two</td>
+                <td data-sort="Low stock hold"><span class="st st--bad">Low stock hold</span></td>
+                <td class="num t-strong" data-sort="74">$74.00</td>
+                <td class="shrink"><div class="row-act">
+                  <button type="button" data-modal-open="m-quick" data-quick="order-admin" aria-label="Actions for order AU-2309"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">#AU-2308</b></td>
+                <td data-sort="20261015">15 Oct 2026</td>
+                <td>
+                  <span class="cell-user">
+                    <span class="avatar">EM</span>
+                    <span><b>Elena Marchetti</b><small>Gold Â· Salem, IN</small></span>
+                  </span>
+                </td>
+                <td>Cellar Notes, candle duo</td>
+                <td data-sort="Awaiting seal"><span class="st st--wait">Awaiting seal</span></td>
+                <td class="num t-strong" data-sort="198">$198.00</td>
+                <td class="shrink"><div class="row-act">
+                  <button type="button" data-modal-open="m-quick" data-quick="order-admin" aria-label="Actions for order AU-2308"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">#AU-2307</b></td>
+                <td data-sort="20261011">11 Oct 2026</td>
+                <td>
+                  <span class="cell-user">
+                    <span class="avatar avatar--sage">DC</span>
+                    <span><b>Daniel Cho</b><small>Silver Â· Portland, US</small></span>
+                  </span>
+                </td>
+                <td>Travel espresso case</td>
+                <td data-sort="Delivered"><span class="st st--ok">Delivered</span></td>
+                <td class="num t-strong" data-sort="96">$96.00</td>
+                <td class="shrink"><div class="row-act">
+                  <button type="button" data-modal-open="m-quick" data-quick="order-admin" aria-label="Actions for order AU-2307"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">#AU-2306</b></td>
+                <td data-sort="20261004">4 Oct 2026</td>
+                <td>
+                  <span class="cell-user">
+                    <span class="avatar avatar--rose">PS</span>
+                    <span><b>Priya Sundaram</b><small>Platinum Â· Bengaluru, IN</small></span>
+                  </span>
+                </td>
+                <td>Autumn Amber No. 04</td>
+                <td data-sort="Cancelled"><span class="st st--bad">Cancelled</span></td>
+                <td class="num t-strong" data-sort="158">$158.00</td>
+                <td class="shrink"><div class="row-act">
+                  <button type="button" data-modal-open="m-quick" data-quick="order-admin" aria-label="Actions for order AU-2306"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">#AU-2305</b></td>
+                <td data-sort="20260929">29 Sep 2026</td>
+                <td>
+                  <span class="cell-user">
+                    <span class="avatar">JW</span>
+                    <span><b>Jonas Weber</b><small>Bronze Â· Hamburg, DE</small></span>
+                  </span>
+                </td>
+                <td>Silk ribbon set No. 12</td>
+                <td data-sort="Refunded"><span class="st st--bad">Refunded</span></td>
+                <td class="num t-strong" data-sort="42">$42.00</td>
+                <td class="shrink"><div class="row-act">
+                  <button type="button" data-modal-open="m-quick" data-quick="order-admin" aria-label="Actions for order AU-2305"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">#AU-2304</b></td>
+                <td data-sort="20260922">22 Sep 2026</td>
+                <td>
+                  <span class="cell-user">
+                    <span class="avatar avatar--sage">NO</span>
+                    <span><b>Nora Ã˜stergaard</b><small>Gold Â· Copenhagen, DK</small></span>
+                  </span>
+                </td>
+                <td>Cellar Notes</td>
+                <td data-sort="Delivered"><span class="st st--ok">Delivered</span></td>
+                <td class="num t-strong" data-sort="198">$198.00</td>
+                <td class="shrink"><div class="row-act">
+                  <button type="button" data-modal-open="m-quick" data-quick="order-admin" aria-label="Actions for order AU-2304"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">#AU-2303</b></td>
+                <td data-sort="20260918">18 Sep 2026</td>
+                <td>
+                  <span class="cell-user">
+                    <span class="avatar avatar--ink">LB</span>
+                    <span><b>LucÃ­a BermÃºdez</b><small>Platinum Â· Madrid, ES</small></span>
+                  </span>
+                </td>
+                <td>Neroli candle duo</td>
+                <td data-sort="Delivered"><span class="st st--ok">Delivered</span></td>
+                <td class="num t-strong" data-sort="88">$88.00</td>
+                <td class="shrink"><div class="row-act">
+                  <button type="button" data-modal-open="m-quick" data-quick="order-admin" aria-label="Actions for order AU-2303"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">#AU-2302</b></td>
+                <td data-sort="20260910">10 Sep 2026</td>
+                <td>
+                  <span class="cell-user">
+                    <span class="avatar avatar--rose">FC</span>
+                    <span><b>Felix Csordas</b><small>Bronze Â· Vienna, AT</small></span>
+                  </span>
+                </td>
+                <td>Bone china teacup, two</td>
+                <td data-sort="Delivered"><span class="st st--ok">Delivered</span></td>
+                <td class="num t-strong" data-sort="74">$74.00</td>
+                <td class="shrink"><div class="row-act">
+                  <button type="button" data-modal-open="m-quick" data-quick="order-admin" aria-label="Actions for order AU-2302"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">#AU-2301</b></td>
+                <td data-sort="20260902">2 Sep 2026</td>
+                <td>
+                  <span class="cell-user">
+                    <span class="avatar">GB</span>
+                    <span><b>Giovanni Bellini</b><small>Gold Â· Salem, IN</small></span>
+                  </span>
+                </td>
+                <td>Autumn Amber No. 04</td>
+                <td data-sort="Delivered"><span class="st st--ok">Delivered</span></td>
+                <td class="num t-strong" data-sort="158">$158.00</td>
+                <td class="shrink"><div class="row-act">
+                  <button type="button" data-modal-open="m-quick" data-quick="order-admin" aria-label="Actions for order AU-2301"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button>
+                </div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="app-empty" data-dt-empty hidden>
+          <span class="ae-ic"><svg aria-hidden="true"><use href="#i-inbox"/></svg></span>
+          <h3>No orders match that</h3>
+          <p>Try a different status, or search by order number, customer name or a SKU from the box.</p>
+          <button class="btn btn--ghost btn--sm" type="button" data-dt-clear>Clear the filters</button>
+        </div>
+
+        <div class="panel-ft">
+          <div class="flex between center wrap gap-m">
+            <span class="dt-count" data-dt-count aria-live="polite"></span>
+            <div class="pager" data-dt-pager role="group" aria-label="Order pages"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PACKING QUEUE + EXCEPTIONS -->
+      <section class="dash-2col">
+        <article class="panel">
+          <div class="panel-hd">
+            <div><h2>Packing queue</h2><p>Waiting on the bench, oldest first.</p></div>
+            <span class="mono">7 parcels</span>
+          </div>
+          <div class="panel-bd panel-bd--flush">
+            <article class="lrow">
+              <span class="fi fi--gold lrow-thumb" style="display:grid;place-items:center"><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-box"/></svg></span>
+              <div class="lrow-main"><b>#AU-2312 Â· Margot Besnard</b><small>Autumn Amber No. 04 Â· gift note to write</small></div>
+              <div class="lrow-side"><span class="st st--wait">Preparing</span><button class="btn btn--ghost btn--sm" data-toast="Moved to the sealing tray">Seal</button></div>
+            </article>
+            <article class="lrow">
+              <span class="fi fi--gold lrow-thumb" style="display:grid;place-items:center"><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-box"/></svg></span>
+              <div class="lrow-main"><b>#AU-2308 Â· Elena Marchetti</b><small>Cellar Notes Â· subscription box, no note</small></div>
+              <div class="lrow-side"><span class="st st--wait">Awaiting seal</span><button class="btn btn--ghost btn--sm" data-toast="Moved to the sealing tray">Seal</button></div>
+            </article>
+            <article class="lrow">
+              <span class="fi fi--gold lrow-thumb" style="display:grid;place-items:center"><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-box"/></svg></span>
+              <div class="lrow-main"><b>#AU-2313 Â· Hannah Osei</b><small>Bone china teacup, two Â· fragile, double box</small></div>
+              <div class="lrow-side"><span class="st st--wait">Preparing</span><button class="btn btn--ghost btn--sm" data-toast="Moved to the sealing tray">Seal</button></div>
+            </article>
+            <article class="lrow">
+              <span class="fi fi--sage lrow-thumb" style="display:grid;place-items:center"><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-truck"/></svg></span>
+              <div class="lrow-main"><b>#AU-2311 Â· Tobias Lang</b><small>Neroli candle Â· DHL collected 16:00</small></div>
+              <div class="lrow-side"><span class="st st--wait">In transit</span><button class="btn btn--ghost btn--sm" data-toast="Tracking link copied"><svg aria-hidden="true"><use href="#i-out"/></svg> Track</button></div>
+            </article>
+          </div>
+          <div class="panel-ft">
+            <div class="flex between center wrap gap-m">
+              <span class="t-mute" style="font-size:.82rem">DHL collects at 16:00 CET from the studio door.</span>
+              <a class="tlink" href="admin.html">Back to the overview</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-hd">
+            <div><h2>Exceptions</h2><p>Nineteen orders that need a person.</p></div>
+            <span class="st st--bad">19 open</span>
+          </div>
+          <div class="panel-bd panel-bd--flush">
+            <article class="lrow">
+              <span class="fi fi--rose lrow-thumb" style="display:grid;place-items:center"><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-alert"/></svg></span>
+              <div class="lrow-main"><b>Payment failed on #AU-2310</b><small>Aiko Kaneko Â· $268.00 Â· retried twice</small></div>
+              <div class="lrow-side"><button class="btn btn--ghost btn--sm" data-modal-open="m-quick" data-quick="order-admin">Retry</button></div>
+            </article>
+            <article class="lrow">
+              <span class="fi fi--rose lrow-thumb" style="display:grid;place-items:center"><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-box"/></svg></span>
+              <div class="lrow-main"><b>Bone china below threshold</b><small>4 pairs left against 12 held for #AU-2309</small></div>
+              <div class="lrow-side"><button class="btn btn--ghost btn--sm" data-modal-open="m-quick" data-quick="product-add">Reorder</button></div>
+            </article>
+            <article class="lrow">
+              <span class="fi fi--rose lrow-thumb" style="display:grid;place-items:center"><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-pin"/></svg></span>
+              <div class="lrow-main"><b>Address could not be verified</b><small>#AU-2298 Â· missing apartment number, Milano</small></div>
+              <div class="lrow-side"><button class="btn btn--ghost btn--sm" data-toast="Customer emailed for a better address">Email</button></div>
+            </article>
+            <article class="lrow">
+              <span class="fi fi--rose lrow-thumb" style="display:grid;place-items:center"><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-truck"/></svg></span>
+              <div class="lrow-main"><b>Parcel stuck in transit</b><small>#AU-2287 Â· no scan for six days, Leipzig</small></div>
+              <div class="lrow-side"><button class="btn btn--ghost btn--sm" data-toast="Replacement requested from DHL">Replace</button></div>
+            </article>
+          </div>
+          <div class="panel-ft">
+            <div class="flex between center wrap gap-m">
+              <span class="t-mute" style="font-size:.82rem">Average resolution time is 1.8 days.</span>
+              <button class="btn btn--ghost btn--sm" data-toast="All nineteen exceptions assigned to you"><svg aria-hidden="true"><use href="#i-users"/></svg> Take them all</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ORDERS PER DAY -->
+      <section class="panel">
+        <div class="panel-hd">
+          <div><h2>Orders per day</h2><p>The last four weeks, Monday first.</p></div>
+          <span class="mono">Average 21.8</span>
+        </div>
+        <div class="panel-bd">
+          <div class="chart" data-chart="bar"
+               data-data="[18,24,21,26,19,32,14,16,22,27,20,23,29,17,15,21,26,34,12,14,19,25,28,30,16,13,20,24,22,31]"
+               data-labels="['Oct 6','Oct 7','Oct 8','Oct 9','Oct 10','Oct 11','Oct 12','Oct 13','Oct 14','Oct 15','Oct 16','Oct 17','Oct 18','Oct 19','Oct 20','Oct 21','Oct 22','Oct 23','Oct 24','Oct 25','Oct 26','Oct 27','Oct 28','Oct 29','Oct 30','Oct 31','Nov 1','Nov 2','Nov 3','Nov 4']"></div>
+        </div>
+        <div class="panel-ft">
+          <div class="flex between center wrap gap-m">
+            <span class="t-mute" style="font-size:.82rem">Sundays and Mondays are consistently slow; the atelier is closed on Sunday.</span>
+            <a class="tlink" href="admin-analytics.html">Open analytics</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+<!-- ============ OVERLAYS ============ -->
+<div class="app-modal" id="m-quick" role="dialog" aria-modal="true" aria-labelledby="m-quick-title">
+  <div class="app-modal-box">
+    <div class="panel-hd">
+      <h2 id="m-quick-title">Quick actions</h2>
+      <p>Choose an action for this order.</p>
+      <button class="icon-btn push" data-modal-close aria-label="Close"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="panel-bd"></div>
+  </div>
+</div>
+<div class="toast-wrap"></div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
