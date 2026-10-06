@@ -793,7 +793,8 @@ a:hover > .arrow, .card:hover .arrow {
 #lightbox .lb-cap { margin-top: 1.2rem; color: rgba(251,247,241,.75); text-align: center; font-size: .82rem; letter-spacing: .1em; }
 .lb-x { position: absolute; top: 1.6rem; right: 1.8rem; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(251,247,241,.3); color: var(--cream); display: grid; place-items: center; transition: transform .5s var(--e-out), background .4s; }
 .lb-x:hover { transform: rotate(90deg); background: var(--gold); border-color: var(--gold); }
-.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 54px; height: 54px; border-radius: 50%; border: 1px solid rgba(251,247,241,.28); color: var(--cream); display: grid; place-items: center; transition: background .4s, border-color .4s; }
+.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 54px; height: 54px; border-radius: 50%; border: 1px solid rgba(251,247,241,.72); background: rgba(251,247,241,.12); color: #fff; display: grid; place-items: center; transition: background .4s, border-color .4s; }
+.lb-nav svg { width: 20px; height: 20px; }
 .lb-nav:hover { background: var(--gold); border-color: var(--gold); }
 .lb-nav.prev { left: 2rem; } .lb-nav.next { right: 2rem; }
 
@@ -2454,4 +2455,35 @@ body { overflow-wrap: break-word; }
   .drawer-close { width: 38px; height: 38px; }
   .drawer .drawer-top { margin-bottom: .55rem; }
   .drawer-foot { padding-top: .7rem; }
+}
+
+/* Filter groups do not use the animated data-seg indicator; keep each
+   selected state inside its own button so it cannot cover the next label. */
+.seg:not([data-seg])::before { display: none; }
+.seg:not([data-seg]) button.is-on {
+  background: var(--ink);
+  color: var(--cream);
+}
+.seg:not([data-seg]) button:hover:not(.is-on) {
+  background: rgba(192,153,91,.14);
+  color: var(--ink);
+}
+body.app-dark .seg:not([data-seg]) button.is-on {
+  background: linear-gradient(90deg, var(--gold-3), var(--gold-2));
+  color: var(--ink);
+}
+body.app-dark .seg:not([data-seg]) button:hover:not(.is-on) {
+  background: rgba(251,247,241,.1);
+  color: var(--cream);
+}
+
+@media (max-width: 760px) {
+  .seg:not([data-seg]) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(7.5rem, 100%), 1fr));
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
+  .seg:not([data-seg]) button { min-height: var(--ctl-h); }
 }

@@ -2385,6 +2385,7 @@
 
   function dashboard() {
     if (!$('.app-body-pad')) return;
+    dashboardSectionActions();
     appCharts();
     appRings();
     appTabs();
@@ -2396,6 +2397,31 @@
     appQuick();
     appForms();
     appImages();
+  }
+
+  function dashboardSectionActions() {
+    const main = $('.app-main');
+    if (!main) return;
+
+    const isFilter = (control) =>
+      control.matches('button[data-filter], button[data-dt-clear]') ||
+      control.matches('.seg[data-seg] button');
+
+    main.addEventListener('click', (event) => {
+      const origin = event.target instanceof Element ? event.target : event.target.parentElement;
+      const control = origin && origin.closest('a[href], button');
+      if (!control || control.closest('.app-top') || control.hasAttribute('data-signout') || isFilter(control)) return;
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      location.assign('404.html');
+    }, true);
+
+    main.addEventListener('submit', (event) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      location.assign('404.html');
+    }, true);
   }
 
   /* ---------------------------------------------------------
