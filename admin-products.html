@@ -176,7 +176,6 @@
               <svg aria-hidden="true"><use href="#i-zoom"/></svg>
               <input type="search" data-dt-search placeholder="Search name, SKU, supplier…" aria-label="Search products">
             </div>
-            <button class="btn btn--ghost btn--sm dt-clear" type="button" data-dt-clear disabled><svg aria-hidden="true"><use href="#i-x"/></svg> Clear</button>
           </div>
         </div>
 
@@ -346,6 +345,25 @@
             </div>
           </div>
           <div class="panel-ft">
+            <div class="grid g-2" style="gap:.8rem 1.4rem">
+              <span class="flex gap-s" style="align-items:flex-start">
+                <svg aria-hidden="true" style="width:16px;height:16px;color:var(--rose);flex:none"><use href="#i-alert"/></svg>
+                <span><b style="display:block;font-weight:500;font-size:.86rem">11 under reorder point</b><small style="display:block;font-size:.76rem;color:var(--txt-mute)">Live SKUs sitting below their reorder level, on top of the 6 that are out entirely.</small></span>
+              </span>
+              <span class="flex gap-s" style="align-items:flex-start">
+                <svg aria-hidden="true" style="width:16px;height:16px;color:var(--sage);flex:none"><use href="#i-cal"/></svg>
+                <span><b style="display:block;font-weight:500;font-size:.86rem">Printed in the studio</b><small style="display:block;font-size:.76rem;color:var(--txt-mute)">Seven of the eleven reprint in four studio days — no external order needed.</small></span>
+              </span>
+              <span class="flex gap-s" style="align-items:flex-start">
+                <svg aria-hidden="true" style="width:16px;height:16px;color:var(--gold-3);flex:none"><use href="#i-bolt"/></svg>
+                <span><b style="display:block;font-weight:500;font-size:.86rem">Longest lead time</b><small style="display:block;font-size:.76rem;color:var(--txt-mute)">Bone china re-fires at 18 days — the single longest pole in the catalogue.</small></span>
+              </span>
+              <span class="flex gap-s" style="align-items:flex-start">
+                <svg aria-hidden="true" style="width:16px;height:16px;color:var(--sage);flex:none"><use href="#i-refresh"/></svg>
+                <span><b style="display:block;font-weight:500;font-size:.86rem">Auto reorder day</b><small style="display:block;font-size:.76rem;color:var(--txt-mute)">A CSV goes to the studio on reorder day — the sheet is ready to send now.</small></span>
+              </span>
+            </div>
+            <div class="rule" style="margin:1.1rem 0 .95rem"></div>
             <div class="flex between center wrap gap-m">
               <span class="t-mute" style="font-size:.82rem">Eleven products sit under their reorder point.</span>
               <button class="btn btn--ghost btn--sm" data-toast="Reorder sheet sent to the studio"><svg aria-hidden="true"><use href="#i-dl"/></svg> Reorder sheet</button>

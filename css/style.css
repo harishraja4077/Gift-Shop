@@ -29,7 +29,7 @@
 
   --shell:     1280px;
   --gut:       clamp(1.25rem, 4vw, 4rem);
-  --sect-y:    clamp(4.5rem, 10vw, 9.5rem);
+  --sect-y:    clamp(3.25rem, 7vw, 6.5rem);
   --radius:    4px;
   --radius-lg: 10px;
 
@@ -755,12 +755,15 @@ a:hover > .arrow, .card:hover .arrow {
 .steps--3 .step:hover { transform: translateY(-8px); box-shadow: var(--shadow-m); }
 .steps--3 .step-media { border-radius: var(--radius-lg); aspect-ratio: 4/3; }
 .steps--3::before { display: none; }
+.sect--dark .steps--3 .step { color: var(--ink); }
+.sect--dark .steps:not(.steps--3) .step p { color: rgba(251,247,241,.72); }
 
 /* ---------- 17. Gallery ---------- */
 .masonry { columns: 3; column-gap: clamp(.7rem, 1.2vw, 1.1rem); }
 .masonry--4 { columns: 4; }
 .mitem { position: relative; break-inside: avoid; margin-bottom: clamp(.7rem, 1.2vw, 1.1rem); overflow: hidden; border-radius: var(--radius-lg); background: var(--cream-2); cursor: pointer; }
 .mitem img { width: 100%; transition: transform 1.1s var(--e-out); }
+.masonry--even .mitem img { display: block; aspect-ratio: 3/2; object-fit: cover; }
 .mitem::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(22,17,14,.05), rgba(22,17,14,.68));
@@ -903,6 +906,8 @@ a:hover > .arrow, .card:hover .arrow {
 .post--feat { display: grid; grid-template-columns: 1.18fr 1fr; align-items: stretch; }
 .post--feat .post-media { aspect-ratio: auto; min-height: 420px; }
 .post--feat .post-body { padding: clamp(1.6rem, 3vw, 3rem); justify-content: center; }
+.sect--dark .post { color: var(--ink); }
+.sect--dark .post .tst-foot small { color: var(--txt-soft); }
 
 .side { position: sticky; top: calc(var(--nav-h) + 1.6rem); display: grid; gap: 2rem; }
 .side-block { padding: 1.5rem; border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; }
@@ -1003,10 +1008,18 @@ a:hover > .arrow, .card:hover .arrow {
 }
 .field input:not(:placeholder-shown) + label,
 .field textarea:not(:placeholder-shown) + label,
-.field input:focus + label, .field textarea:focus + label {
+.field input:focus + label, .field textarea:focus + label,
+.field select + label,
+.field select:focus + label,
+.field select:valid + label,
+.field.is-filled label,
+.field:focus-within label {
   transform: translateY(-.72rem) scale(.72); color: var(--gold-3); letter-spacing: .1em; text-transform: uppercase;
 }
-.field select { appearance: none; padding-top: 1.32rem; }
+.field select {
+  appearance: none; padding-top: 1.32rem; color: var(--ink);
+}
+.field select option { color: var(--ink); }
 .field .sel-caret { position: absolute; right: 1.1rem; top: 1.3rem; width: 12px; height: 12px; pointer-events: none; color: var(--txt-soft); }
 .form-note { font-size: .76rem; color: var(--txt-soft); }
 .form-msg { display: none; align-items: center; gap: .6rem; padding: .9rem 1.1rem; border-radius: var(--radius); background: rgba(111,128,105,.14); color: var(--sage); font-size: .85rem; }
@@ -1029,6 +1042,8 @@ a:hover > .arrow, .card:hover .arrow {
 .hours div span { color: var(--txt-mute); }
 .hours div.is-now { color: var(--gold-3); }
 .hours div.is-now b::after { content: " · open now"; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--sage); }
+.sect--dark .hours div span { color: rgba(251,247,241,.7); }
+.sect--dark .hours div { border-bottom-color: rgba(251,247,241,.16); }
 
 /* maps */
 .map-grid { display: grid; grid-template-columns: 1.5fr .9fr; gap: clamp(1rem, 1.7vw, 1.6rem); align-items: start; }
@@ -1059,7 +1074,7 @@ a:hover > .arrow, .card:hover .arrow {
   font-size: .62rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-3);
 }
 .map-hud-tag svg { width: 12px; height: 12px; }
-.map-hud b { font-family: var(--f-display); font-weight: 400; font-size: 1.16rem; line-height: 1.16; }
+.map-hud b { font-family: var(--f-display); font-weight: 400; font-size: 1.16rem; line-height: 1.16; color: var(--ink); }
 .map-hud > span:not(.map-hud-tag) { font-size: .74rem; line-height: 1.5; color: var(--txt-mute); }
 .map-hud-btn {
   margin-top: .7rem; display: inline-flex; align-items: center; gap: .5rem; width: fit-content;
@@ -1657,6 +1672,9 @@ body.app-dark .icon-btn:hover { color: var(--gold-2); }
   padding: 1.15rem clamp(1rem, 1.6vw, 1.5rem);
   border-bottom: 1px solid var(--line);
 }
+.panel-hd > :first-child {
+  flex: 1 1 16rem; min-width: 0;
+}
 .panel-hd h2, .panel-hd h3 { font-size: 1.16rem; letter-spacing: -.01em; }
 .panel-hd p { font-size: .8rem; color: var(--txt-mute); }
 .panel-hd .mono { margin-left: auto; color: var(--txt-soft); }
@@ -1763,9 +1781,14 @@ body.app-dark .row-act button:hover { background: var(--gold-3); border-color: v
 
 /* — toolbar / filters — */
 .app-toolbar { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
-.seg { display: inline-flex; height: var(--ctl-h); padding: 3px; gap: 3px; border: 1px solid var(--line); border-radius: 100px; background: var(--panel); align-items: stretch; }
+.seg {
+  display: inline-flex; height: var(--ctl-h); padding: 3px; gap: 3px;
+  border: 1px solid var(--line); border-radius: 100px; background: var(--panel);
+  align-items: stretch; flex-shrink: 0; max-width: 100%;
+}
 .seg button {
   position: relative; display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 0 auto; white-space: nowrap; min-width: 0;
   padding: .48em .9em; border: 0; border-radius: 100px; background: none;
   font-family: inherit; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--txt-soft);
   transition: color .35s var(--e-out);
@@ -2441,7 +2464,7 @@ body { overflow-wrap: break-word; }
 
 /* ---------- 33.7 · landscape phones: short viewports ---------- */
 @media (max-height: 560px) and (orientation: landscape) {
-  :root { --nav-h: 64px; --sect-y: clamp(2.6rem, 9vh, 4.5rem); }
+  :root { --nav-h: 64px; --sect-y: clamp(1.8rem, 7vh, 3rem); }
   .hero { min-height: auto; }
   .phero { padding-top: calc(var(--nav-h) + 1.8rem); padding-bottom: 2.4rem; }
   .modal, .app-modal { padding-block: 1rem; }

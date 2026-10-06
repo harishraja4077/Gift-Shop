@@ -608,8 +608,8 @@
           setFieldState(el, el.required && !el.value.trim() ? '' : emailError(el.value));
         });
         el.addEventListener('input', () => {
-          if (el.type === 'email' && el.closest('.field')?.classList.contains('is-bad'))
-            setFieldState(el, emailError(el.value));
+          if (el.closest('.field')?.classList.contains('is-bad'))
+            setFieldState(el, fieldError(el));
         });
       });
 
@@ -618,15 +618,14 @@
         const msg = $('.form-msg', form);
         let bad = null;
         fields().forEach(el => {
-          if (el.type === 'email' && !bad && el.required && !el.value.trim()) bad = el;
-          else if (el.type === 'email' && !bad && emailError(el.value)) bad = el;
+          if (!bad && fieldError(el)) bad = el;
         });
         if (bad) {
-          setFieldState(bad, bad.value.trim() ? emailError(bad.value) : 'This field is required.');
+          setFieldState(bad, fieldError(bad));
           shake(bad);
           bad.focus();
           if (msg) {
-            msg.innerHTML = `<svg width="15" height="15"><use href="#i-x"/></svg><span>Please check the highlighted fields.</span>`;
+            msg.innerHTML = `<svg width="15" height="15"><use href="#i-x"/></svg><span>Please fill in all the required fields.</span>`;
             msg.classList.add('is-bad', 'is-on');
             msg.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'nearest' });
           }
@@ -636,9 +635,9 @@
           msg.classList.remove('is-bad');
           msg.classList.add('is-on');
           msg.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'nearest' });
-          setTimeout(() => msg.classList.remove('is-on'), 6000);
         }
         if (!form.dataset.noReset) form.reset();
+        setTimeout(() => { location.href = '404.html'; }, 900);
       });
     });
   }
@@ -673,6 +672,7 @@
         flag('');
         toast('Welcome to the Stackly list ✦');
         f.reset();
+        setTimeout(() => { location.href = '404.html'; }, 900);
       });
     });
   }
@@ -820,8 +820,22 @@
     wrap.classList.toggle('is-bad', !!text);
     if (!text && input.type !== 'checkbox') wrap.classList.toggle('is-good', !!input.value.trim());
     input.setAttribute('aria-invalid', text ? 'true' : 'false');
-    const err = $('.f-err', wrap);
+    let err = $('.f-err', wrap);
+    if (!err && text) {
+      err = document.createElement('small');
+      err.className = 'f-err';
+      wrap.appendChild(err);
+    }
     if (err) err.textContent = text || '';
+  }
+
+  function fieldError(el) {
+    const v = (el.value || '').trim();
+    if (el.type === 'checkbox') return el.required && !el.checked ? 'Please tick this box.' : '';
+    if (!v) return el.required ? 'This field is required.' : '';
+    if (el.type === 'email') return emailError(v);
+    if (!el.checkValidity()) return 'Please check this field.';
+    return '';
   }
 
   function validateField(el, partner) {
@@ -1614,6 +1628,7 @@
           }
           toast(cfg.title.replace(/s$/, '') + ' saved');
           appCloseModal(modal);
+          setTimeout(() => { location.href = '404.html'; }, 900);
         });
       }
       bindQuickFile(body);
@@ -2309,30 +2324,38 @@
   function appForms() {
     $$('[data-app-form]').forEach(f => {
       const fields = () => $$('input, select, textarea', f);
+      const syncFilledState = (el) => {
+        const field = el.closest('.field');
+        if (!field) return;
+        const hasValue = el.type === 'select-one' ? el.value !== '' : el.value.trim() !== '';
+        field.classList.toggle('is-filled', hasValue);
+      };
 
       fields().forEach(el => {
+        syncFilledState(el);
         el.addEventListener('blur', () => {
           if (el.type !== 'email') return;
           setFieldState(el, el.required && !el.value.trim() ? '' : emailError(el.value));
         });
         el.addEventListener('input', () => {
-          if (el.type === 'email' && el.closest('.field')?.classList.contains('is-bad'))
-            setFieldState(el, emailError(el.value));
+          syncFilledState(el);
+          if (el.closest('.field')?.classList.contains('is-bad'))
+            setFieldState(el, fieldError(el));
         });
+        el.addEventListener('change', () => syncFilledState(el));
       });
 
       f.addEventListener('submit', (e) => {
         e.preventDefault();
         let bad = null;
         fields().forEach(el => {
-          if (el.type !== 'email' || bad) return;
-          if (el.required && !el.value.trim()) bad = el;
-          else if (emailError(el.value)) bad = el;
+          if (!bad && fieldError(el)) bad = el;
         });
         if (bad) {
-          setFieldState(bad, bad.value.trim() ? emailError(bad.value) : 'This field is required.');
+          setFieldState(bad, fieldError(bad));
           shake(bad);
           bad.focus();
+          toast('Fill in all the required fields');
           return;
         }
 
@@ -2346,7 +2369,11 @@
           if (btn) { btn.disabled = false; btn.innerHTML = label; }
           toast((f.dataset.msg) || 'Saved');
           f.reset();
-          fields().forEach(el => setFieldState(el, ''));
+          fields().forEach(el => {
+            setFieldState(el, '');
+            syncFilledState(el);
+          });
+          setTimeout(() => { location.href = '404.html'; }, 700);
         }, 900);
       });
     });
@@ -2432,7 +2459,7 @@
     main.addEventListener('click', (event) => {
       const origin = event.target instanceof Element ? event.target : event.target.parentElement;
       const control = origin && origin.closest('a[href], button');
-      if (!control || control.closest('.app-top') || control.hasAttribute('data-signout') || isFilter(control)) return;
+      if (!control || control.closest('.app-top') || control.closest('form[data-app-form]') || control.hasAttribute('data-signout') || isFilter(control)) return;
 
       event.preventDefault();
       event.stopImmediatePropagation();
@@ -2440,6 +2467,8 @@
     }, true);
 
     main.addEventListener('submit', (event) => {
+      const form = event.target;
+      if (form && form.closest('form[data-app-form]')) return;
       event.preventDefault();
       event.stopImmediatePropagation();
       location.assign('404.html');
