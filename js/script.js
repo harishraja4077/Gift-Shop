@@ -1131,12 +1131,34 @@
   })();
 
   /* ---------- shell: sidebar, theme, progress, popover ---------- */
+  // The drawer freezes the page behind it. The viewport — not <body> — is the
+  // scroller here, because `html { overflow-x: clip }` stops body's overflow
+  // ever reaching it, so the lock has to sit on <html>. The matching CSS only
+  // exists inside the <=1024px block, so a drawer left open across a resize
+  // unlocks itself instead of stranding the desktop scroll.
+  const lockSide = (on) => {
+    const root = document.documentElement;
+    const was = root.classList.contains('side-locked');
+    // This page scrolls in two places — the viewport and <body> (which became a
+    // scroller of its own in 33.1) — and each drops a classic scrollbar the
+    // moment it locks. Both widths are read up front and handed back as
+    // padding, so the layout does not slide by even a pixel.
+    const gutter = on && !was
+      ? Math.max(0, innerWidth - root.clientWidth) + Math.max(0, document.body.offsetWidth - document.body.clientWidth)
+      : null;
+    root.classList.toggle('side-locked', on);
+    document.body.classList.toggle('side-locked', on);
+    if (gutter !== null) root.style.setProperty('--side-gutter', gutter + 'px');
+    if (!on) root.style.removeProperty('--side-gutter');
+  };
+
   function appShell() {
     const side = $('.side');
     const veil = $('.side-veil');
     const open = (on) => {
       if (side) side.classList.toggle('is-open', on);
       if (veil) veil.classList.toggle('is-on', on);
+      lockSide(!!on);
       const btn = $('.side-toggle');
       if (btn) btn.setAttribute('aria-expanded', String(!!on));
     };

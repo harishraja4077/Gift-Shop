@@ -2283,10 +2283,23 @@ body.app-dark .seg button.is-on { color: var(--ink); }
     box-shadow: var(--shadow-l);
   }
   .side.is-open { transform: none; }
+  /* the page behind the drawer stays put: the viewport is the scroller, so the
+     lock goes on <html> (body's overflow never reaches it — see 33.1). The
+     gutter hands back the width the classic scrollbars just gave up, so nothing
+     slides sideways when the lock lands. */
+  html.side-locked {
+    overflow: clip;
+    padding-right: var(--side-gutter, 0px);
+  }
+  @supports not (overflow: clip) { html.side-locked { overflow: hidden; } }
+  body.side-locked { overflow: hidden; }
+  .side-nav { overscroll-behavior: contain; }
+  .side-top, .side-foot { touch-action: none; }
   .side-veil {
     display: block;
     position: fixed; inset: 0; z-index: 58; background: rgba(14,11,9,.55); backdrop-filter: blur(3px);
     opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s;
+    touch-action: none;
   }
   .side-veil.is-on { opacity: 1; visibility: visible; }
   .side-toggle { display: grid; }
