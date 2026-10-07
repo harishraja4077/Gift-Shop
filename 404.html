@@ -7,10 +7,33 @@
 <meta name="description" content="That page could not be found. Search the Stackly Gift Atelier catalogue or head back to the worktable.">
 <meta name="theme-color" content="#16110E">
 <meta name="robots" content="noindex, nofollow">
+<script>
+/* GitHub Pages answers any missing URL with 404.html but keeps that URL in the
+   address bar, so relative links resolve against the missing path instead of the
+   site root (e.g. /repo/deep/missing -> /repo/deep/css/style.css, which is a 404
+   too: no stylesheet, no script, dead buttons and a preloader that never lifts).
+   Walk the path segments and pin a <base> at the deepest directory that really
+   serves js/script.js, before the stylesheet and links below are parsed. */
+(function () {
+  if (location.protocol === 'file:') return;
+  var segs = location.pathname.split('/').filter(Boolean);
+  var bases = ['/'];
+  for (var i = 0; i < segs.length; i++) bases.push('/' + segs.slice(0, i + 1).join('/') + '/');
+  for (var j = bases.length - 1; j >= 0; j--) {
+    try {
+      var x = new XMLHttpRequest();
+      x.open('HEAD', bases[j] + 'js/script.js', false);
+      x.send(null);
+      if (x.status === 200) { document.write('<base href="' + bases[j] + '">'); return; }
+    } catch (e) { /* keep probing */ }
+  }
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<noscript><style>#preloader{display:none!important}</style></noscript>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%23C0995B'/><text x='50' y='68' font-size='58' font-family='Georgia' fill='%23fff' text-anchor='middle'>A</text></svg>">
 </head>
 <body>
@@ -114,5 +137,27 @@
 
 <script src="js/script.js"></script>
 <script>document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
+<script>
+/* Fail-safes: if js/script.js never arrives (blocked, offline, bad path) the
+   curtain must still lift and "Go Back" must still be wired up. */
+setTimeout(function () {
+  var pl = document.getElementById('preloader');
+  if (pl && !pl.classList.contains('is-done')) {
+    pl.classList.add('is-done');
+    document.body.classList.remove('is-locked');
+    setTimeout(function () { if (pl.parentNode) pl.remove(); }, 1400);
+  }
+  var back = document.querySelector('[data-err-back]');
+  if (back && !back.dataset.errBound) {
+    back.dataset.errBound = '1';
+    back.addEventListener('click', function () {
+      var same = false;
+      try { same = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
+      if (same && history.length > 1) history.back();
+      else location.href = 'index.html';
+    });
+  }
+}, 3200);
+</script>
 </body>
 </html>

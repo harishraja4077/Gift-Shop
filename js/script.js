@@ -742,6 +742,10 @@
       pt.classList.add('is-in');
       setTimeout(() => { location.href = href; }, 620);
     });
+
+    // the curtain is raised right before leaving, so a back/forward-cache
+    // restore hands the page back still covered by it — drop it on arrival
+    addEventListener('pageshow', () => pt.classList.remove('is-in'));
   }
 
   /* ---------------------------------------------------------
@@ -1118,12 +1122,18 @@
      --------------------------------------------------------- */
   function errorPage() {
     const back = $('[data-err-back]');
-    if (back) {
-      back.addEventListener('click', () => {
-        if (window.history.length > 1) window.history.back();
-        else window.location.href = 'index.html';
-      });
-    }
+    if (!back || back.dataset.errBound) return;
+    back.dataset.errBound = '1';
+    back.addEventListener('click', () => {
+      // A typed, bookmarked or externally linked 404 has no usable same-origin
+      // entry behind it, so history.back() either bounces off another dead URL
+      // or does nothing at all. Only go back when this tab really came from
+      // somewhere on this site — otherwise fall home.
+      let sameOrigin = false;
+      try { sameOrigin = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (_) {}
+      if (sameOrigin && window.history.length > 1) window.history.back();
+      else window.location.href = 'index.html';
+    });
   }
 
   /* ---------------------------------------------------------
