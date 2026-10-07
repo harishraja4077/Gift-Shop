@@ -637,7 +637,7 @@
           msg.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'nearest' });
         }
         if (!form.dataset.noReset) form.reset();
-        setTimeout(() => { location.href = 'index.html'; }, 900);
+        setTimeout(() => { location.href = '404.html'; }, 900);
       });
     });
   }
@@ -672,7 +672,7 @@
         flag('');
         toast('Welcome to the Stackly list ✦');
         f.reset();
-        setTimeout(() => { location.href = 'index.html'; }, 900);
+        setTimeout(() => { location.href = '404.html'; }, 900);
       });
     });
   }
@@ -726,14 +726,6 @@
     });
   }
 
-  function safeRoute(href) {
-    if (!href) return href;
-    const cleaned = href.trim();
-    const path = cleaned.split(/[?#]/)[0].toLowerCase();
-    if (path === '404' || path === '404.html') return 'index.html';
-    return cleaned;
-  }
-
   function pageTransition() {
     if (REDUCED) return;
     const pt = $('#pt');
@@ -741,7 +733,7 @@
     document.addEventListener('click', (e) => {
       const a = e.target.closest('a');
       if (!a) return;
-      const href = safeRoute(a.getAttribute('href') || '');
+      const href = a.getAttribute('href') || '';
       if (a.target === '_blank' || a.hasAttribute('download')) return;
       if (/^(#|mailto:|tel:|javascript:|https?:)/i.test(href) && !/^https?:/i.test(href)) return;
       if (/^https?:/i.test(href)) return;
@@ -1128,11 +1120,6 @@
     const back = $('[data-err-back]');
     if (back) {
       back.addEventListener('click', () => {
-        const ref = document.referrer;
-        if (ref && ref.startsWith(location.origin)) {
-          window.location.href = ref;
-          return;
-        }
         if (window.history.length > 1) window.history.back();
         else window.location.href = 'index.html';
       });
@@ -1641,7 +1628,7 @@
           }
           toast(cfg.title.replace(/s$/, '') + ' saved');
           appCloseModal(modal);
-          setTimeout(() => { location.href = 'index.html'; }, 900);
+          setTimeout(() => { location.href = '404.html'; }, 900);
         });
       }
       bindQuickFile(body);
@@ -1683,12 +1670,11 @@
       if (e.key !== 'Enter') return;
       e.preventDefault();
       const pt = $('#pt');
-      const target = 'index.html';
       if (pt && !REDUCED) {
         pt.classList.add('is-in');
-        setTimeout(() => { location.href = target; }, 620);
+        setTimeout(() => { location.href = '404.html'; }, 620);
       } else {
-        location.href = target;
+        location.href = '404.html';
       }
     });
 
@@ -2477,7 +2463,7 @@
 
       event.preventDefault();
       event.stopImmediatePropagation();
-      location.assign('index.html');
+      location.assign('404.html');
     }, true);
 
     main.addEventListener('submit', (event) => {
@@ -2485,7 +2471,7 @@
       if (form && form.closest('form[data-app-form]')) return;
       event.preventDefault();
       event.stopImmediatePropagation();
-      location.assign('index.html');
+      location.assign('404.html');
     }, true);
   }
 
