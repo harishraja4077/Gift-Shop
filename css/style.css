@@ -818,6 +818,12 @@ a:hover > .arrow, .card:hover .arrow {
 .tst .tst-foot { margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid rgba(251,247,241,.14); display: flex; align-items: center; gap: .85rem; }
 .sect--cream .tst .tst-foot, .on-cream .tst .tst-foot { border-color: var(--line-soft); }
 
+/* grid variant — every card sits in the layout (no sideways scroller) and
+   the attributions stay pinned to the bottom edge of each card */
+.tst-grid > .tst { display: flex; flex-direction: column; }
+.tst-grid > .tst p { margin-bottom: 1.6rem; }
+.tst-grid > .tst .tst-foot { margin-top: auto; }
+
 .avatar {
   width: 46px; height: 46px; border-radius: 50%; flex: none;
   display: grid; place-items: center;

@@ -596,6 +596,19 @@
   }
 
   /* ---------------------------------------------------------
+     18b. Letters-only inputs (names) — digits and symbols are
+     scrubbed the moment they are typed, in any form on the site.
+     --------------------------------------------------------- */
+  function letterFields() {
+    $$('input[data-letters]').forEach(el => {
+      el.addEventListener('input', () => {
+        const clean = el.value.replace(/[^\p{L} ]/gu, '');
+        if (clean !== el.value) el.value = clean;
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------
      19. Forms (front-end demo)
      --------------------------------------------------------- */
   function forms() {
@@ -604,8 +617,12 @@
 
       fields().forEach(el => {
         el.addEventListener('blur', () => {
-          if (el.type !== 'email') return;
-          setFieldState(el, el.required && !el.value.trim() ? '' : emailError(el.value));
+          if (el.type === 'email') {
+            setFieldState(el, el.required && !el.value.trim() ? '' : emailError(el.value));
+            return;
+          }
+          if (el.dataset.letters !== undefined && el.value.trim())
+            setFieldState(el, fieldError(el));
         });
         el.addEventListener('input', () => {
           if (el.closest('.field')?.classList.contains('is-bad'))
@@ -837,6 +854,8 @@
     const v = (el.value || '').trim();
     if (el.type === 'checkbox') return el.required && !el.checked ? 'Please tick this box.' : '';
     if (!v) return el.required ? 'This field is required.' : '';
+    if (el.dataset.letters !== undefined && !/^[\p{L} ]+$/u.test(v))
+      return 'Please enter a name using letters only.';
     if (el.type === 'email') return emailError(v);
     if (!el.checkValidity()) return 'Please check this field.';
     return '';
@@ -846,6 +865,8 @@
     const v = (el.value || '').trim();
     let msg = '';
     if (el.required && !v) msg = 'This field is required.';
+    else if (el.dataset.letters !== undefined && !/^[\p{L} ]+$/u.test(v))
+      msg = 'Please enter a name using letters only.';
     else if (el.type === 'email' && v) msg = emailError(v);
     else if (el.type === 'password' && v && el.dataset.min && v.length < +el.dataset.min)
       msg = `Use at least ${el.dataset.min} characters.`;
@@ -1125,14 +1146,20 @@
     if (!back || back.dataset.errBound) return;
     back.dataset.errBound = '1';
     back.addEventListener('click', () => {
-      // A typed, bookmarked or externally linked 404 has no usable same-origin
-      // entry behind it, so history.back() either bounces off another dead URL
-      // or does nothing at all. Only go back when this tab really came from
-      // somewhere on this site — otherwise fall home.
-      let sameOrigin = false;
-      try { sameOrigin = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (_) {}
-      if (sameOrigin && window.history.length > 1) window.history.back();
-      else window.location.href = 'index.html';
+      // Go back to the page — and the section of that page — the visitor was
+      // actually on. history.back() restores both, because the browser keeps
+      // the entry and its scroll position. Only fall home when this tab has no
+      // previous entry at all (a typed or bookmarked 404), or when the previous
+      // entry lives on another site and there is nothing of ours to return to.
+      if (window.history.length > 1) { window.history.back(); return; }
+      let referrer = '';
+      try { referrer = document.referrer || ''; } catch (_) {}
+      if (referrer) {
+        try {
+          if (new URL(referrer).origin === location.origin) { window.location.href = referrer; return; }
+        } catch (_) {}
+      }
+      window.location.href = 'index.html';
     });
   }
 
@@ -2510,6 +2537,7 @@
     lightbox();
     shop();
     quickview();
+    letterFields();
     forms();
     newsletters();
     hours();
