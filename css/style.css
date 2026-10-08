@@ -204,7 +204,7 @@ em { font-family: var(--f-display); font-weight: 300; }
 .btn > * { position: relative; z-index: 2; }
 .btn > svg { width: 16px; height: 16px; flex: none; }
 .btn::before {
-  content: ""; position: absolute; inset: 0; z-index: 1;
+  content: ""; position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(120deg, var(--gold-3), var(--gold) 55%, var(--gold-2));
   transform: translateY(101%);
   transition: transform .58s var(--e-out);
@@ -345,7 +345,8 @@ a:hover > .arrow, .card:hover .arrow {
 .nav.is-stuck { height: 66px; }
 .nav.is-stuck::before { opacity: 1; }
 .nav.is-stuck .logo-img { transform: scale(.9); }
-.nav.is-hidden { transform: translateY(-102%); }
+/* the bar is fixed on every page and never slides out of view */
+.nav.is-hidden { transform: none; }
 
 .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; width: 100%; }
 
@@ -2232,7 +2233,7 @@ body.app-flip .app-main { animation: flip .55s var(--e-out); }
 /* — misc polish — */
 .btn { position: relative; overflow: hidden; }
 .app-body .btn--sm::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: radial-gradient(70px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.22), transparent 60%);
   opacity: 0; transition: opacity .35s;
 }
@@ -2270,7 +2271,10 @@ body.app-flip .app-main { animation: flip .55s var(--e-out); }
 .sw:hover { border-color: var(--gold); }
 
 /* — segmented control states — */
-.seg button.is-on, .seg button:hover { color: var(--cream); }
+.seg button.is-on { color: var(--cream); }
+/* a hover must never turn the label light while the dark pill is still
+   sitting on another button — that made the text unreadable on click */
+.seg button:hover:not(.is-on) { color: var(--txt); }
 body.app-dark .seg { background: var(--panel); }
 body.app-dark .seg button.is-on { color: var(--ink); }
 

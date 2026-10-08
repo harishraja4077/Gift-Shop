@@ -175,10 +175,8 @@
   }
 
   /* ---------------------------------------------------------
-     6. Nav: sticky, hide-on-scroll-down, progress, active link
+     6. Nav: permanently fixed (never hides), progress, active link
      --------------------------------------------------------- */
-  const scroll = { y: 0, last: 0, vel: 0 };
-
   function nav() {
     const bar = $('.nav');
     const prog = $('#progress');
@@ -186,14 +184,8 @@
 
     const onScroll = () => {
       const y = window.scrollY;
-      scroll.vel = y - scroll.last;
-      scroll.last = y;
 
-      if (bar) {
-        bar.classList.toggle('is-stuck', y > 40);
-        if (y > 420 && scroll.vel > 0) bar.classList.add('is-hidden');
-        else bar.classList.remove('is-hidden');
-      }
+      if (bar) bar.classList.toggle('is-stuck', y > 40);
 
       const max = document.documentElement.scrollHeight - innerHeight;
       if (prog) prog.style.transform = `scaleX(${max > 0 ? clamp(y / max, 0, 1) : 0})`;
